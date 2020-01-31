@@ -1,0 +1,606 @@
+Begin Object Class=/Script/Engine.Material Name="PP_Outliner_M"
+   Begin Object Class=/Script/Engine.MaterialExpressionAppendVector Name="MaterialExpressionAppendVector_0"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_0"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_1"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_3"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_10"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_6"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_7"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_3"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_4"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_5"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_6"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_7"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_8"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionIf Name="MaterialExpressionIf_0"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_13"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_14"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_15"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_16"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_17"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_18"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_19"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_20"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_21"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_22"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_23"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_24"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_25"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_26"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_27"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_28"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_29"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_30"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_31"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_32"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_33"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_34"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_35"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSceneTexture Name="MaterialExpressionSceneTexture_4"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSceneTexture Name="MaterialExpressionSceneTexture_5"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSceneTexture Name="MaterialExpressionSceneTexture_8"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_2"
+   End Object
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Name="MaterialExpressionAppendVector_0"
+      A=(Expression=MaterialExpressionComponentMask'"PP_Outliner_M:MaterialExpressionComponentMask_6"')
+      B=(Expression=MaterialExpressionComponentMask'"PP_Outliner_M:MaterialExpressionComponentMask_7"')
+      MaterialExpressionEditorX=-1937
+      MaterialExpressionEditorY=-1868
+      MaterialExpressionGuid=FAA15C9748EE327848D743A5373EB9EA
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_0"
+      SizeX=2220
+      SizeY=840
+      Text="Sobel Operator- Horizontal"
+      MaterialExpressionEditorX=-4440
+      MaterialExpressionEditorY=-2800
+      MaterialExpressionGuid=B7C363E24EFB5781DB3EB2888446DE38
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_1"
+      SizeX=2160
+      SizeY=860
+      Text="Sobel Operator- Vertical"
+      MaterialExpressionEditorX=-4447
+      MaterialExpressionEditorY=-1848
+      MaterialExpressionGuid=EE7E4DE9468746156F6ACB8BE23DAE24
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_3"
+      SizeX=667
+      SizeY=335
+      Text="Combine vertical and horizontal operators"
+      MaterialExpressionEditorX=-2160
+      MaterialExpressionEditorY=-1980
+      MaterialExpressionGuid=B024E2D54125598ABD42CE9AF98C1EB6
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_10"
+      Input=(Expression=MaterialExpressionSceneTexture'"PP_Outliner_M:MaterialExpressionSceneTexture_8"',Mask=1,MaskR=1,MaskG=1,MaskB=1,MaskA=1)
+      R=True
+      G=True
+      B=True
+      MaterialExpressionEditorX=-1640
+      MaterialExpressionEditorY=-1340
+      MaterialExpressionGuid=89049098489055A4D533B4AA332B23AF
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_6"
+      Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_13"')
+      R=True
+      MaterialExpressionEditorX=-2097
+      MaterialExpressionEditorY=-1917
+      MaterialExpressionGuid=7079036B4A30E7EE3A2D709EB320F190
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_7"
+      Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_24"')
+      R=True
+      MaterialExpressionEditorX=-2097
+      MaterialExpressionEditorY=-1777
+      MaterialExpressionGuid=B09816C146EB1591FFE002B2106168DE
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_3"
+      Constant=(R=1.000000,G=2.000000,B=1.000000,A=0.000000)
+      MaterialExpressionEditorX=-3922
+      MaterialExpressionEditorY=-2707
+      MaterialExpressionGuid=8046D8484B04AE6C60626C814127D289
+      Material=Material'"PP_Outliner_M"'
+      Desc="Kernel matrix row 0"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_4"
+      MaterialExpressionEditorX=-3722
+      MaterialExpressionEditorY=-2627
+      MaterialExpressionGuid=A3BD35A147C8C30CCDF7FCBBE4D10820
+      Material=Material'"PP_Outliner_M"'
+      Desc="Kernel matrix row 1"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_5"
+      Constant=(R=-1.000000,G=-2.000000,B=-1.000000,A=0.000000)
+      MaterialExpressionEditorX=-3520
+      MaterialExpressionEditorY=-2560
+      MaterialExpressionGuid=8B272A9E4736A7FB7605F183CEF57768
+      Material=Material'"PP_Outliner_M"'
+      Desc="Kernel matrix row 2"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_6"
+      Constant=(R=1.000000,G=0.000000,B=-1.000000,A=0.000000)
+      MaterialExpressionEditorX=-3942
+      MaterialExpressionEditorY=-1742
+      MaterialExpressionGuid=57CB1B9146F584E07ECE8B93BD6F6A60
+      Material=Material'"PP_Outliner_M"'
+      Desc="Kernel matrix row 0"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_7"
+      Constant=(R=2.000000,G=0.000000,B=-2.000000,A=0.000000)
+      MaterialExpressionEditorX=-3742
+      MaterialExpressionEditorY=-1662
+      MaterialExpressionGuid=494F40394E50AC477E53D6AFA93391CA
+      Material=Material'"PP_Outliner_M"'
+      Desc="Kernel matrix row 1"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_8"
+      Constant=(R=1.000000,G=0.000000,B=-1.000000,A=0.000000)
+      MaterialExpressionEditorX=-3540
+      MaterialExpressionEditorY=-1580
+      MaterialExpressionGuid=B828DB744DF61B32A3BF28B1B9BCFCC8
+      Material=Material'"PP_Outliner_M"'
+      Desc="Kernel matrix row 2"
+   End Object
+   Begin Object Name="MaterialExpressionIf_0"
+      A=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_35"')
+      AGreaterThanB=(Expression=MaterialExpressionVectorParameter'"PP_Outliner_M:MaterialExpressionVectorParameter_2"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      ALessThanB=(Expression=MaterialExpressionComponentMask'"PP_Outliner_M:MaterialExpressionComponentMask_10"')
+      ConstB=0.500000
+      MaterialExpressionEditorX=-1422
+      MaterialExpressionEditorY=-1637
+      MaterialExpressionGuid=29428BBA4B9A8AFD1D3BFCB9F14B3504
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_13"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ConvolveTexture.MF_ConvolveTexture"'
+      FunctionInputs(0)=(ExpressionInputId=62FD9DE14A8B79EF5EE0DB90E150E7F5,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_18"',InputName="Middle-Left"))
+      FunctionInputs(1)=(ExpressionInputId=49AD4B1041DA1F9EF1A94C994DB669CB,Input=(Expression=MaterialExpressionConstant3Vector'"PP_Outliner_M:MaterialExpressionConstant3Vector_4"',InputName="Row1"))
+      FunctionInputs(2)=(ExpressionInputId=602C680F4C0AD0CFC3FFB1905AD30787,Input=(Expression=MaterialExpressionConstant3Vector'"PP_Outliner_M:MaterialExpressionConstant3Vector_5"',InputName="Row2"))
+      FunctionInputs(3)=(ExpressionInputId=639D73FD4A2A4E23E94837BE75EE478A,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_15"',InputName="Top-Left"))
+      FunctionInputs(4)=(ExpressionInputId=B3D8DFFC44E9BB9D23C7F0994155EB23,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_16"',InputName="Top-Center"))
+      FunctionInputs(5)=(ExpressionInputId=348721E64EBBDD93E8FDB19526C56145,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_17"',InputName="Top-Right"))
+      FunctionInputs(6)=(ExpressionInputId=B764223B40B1EDBB4C921F9E412CA8D5,Input=(Expression=MaterialExpressionConstant3Vector'"PP_Outliner_M:MaterialExpressionConstant3Vector_3"',InputName="Row0"))
+      FunctionInputs(7)=(ExpressionInputId=30E896CA49E9063F48E2C79FB0EB47D4,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_19"',InputName="Middle-Center"))
+      FunctionInputs(8)=(ExpressionInputId=C5C345A94C05AFEEC298239B867256ED,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_20"',InputName="Middle-Right"))
+      FunctionInputs(9)=(ExpressionInputId=313EB124454664C556B2359D44393BB2,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_21"',InputName="Bottom-Left"))
+      FunctionInputs(10)=(ExpressionInputId=346B56684E6A5A867766CDA883402060,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_22"',InputName="Bottom-Center"))
+      FunctionInputs(11)=(ExpressionInputId=2CD56D934FBC1DAE4419809C1BC1EF31,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_23"',InputName="Bottom-Right"))
+      FunctionOutputs(0)=(ExpressionOutputId=4200A56C4BD1860E67C26584E1749DAA,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-2512
+      MaterialExpressionEditorY=-2496
+      MaterialExpressionGuid=09860D9741C7FD747C40D7A582D566C8
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_14"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_SampleSceneTextureNeighbourUVs.MF_SampleSceneTextureNeighbourUVs"'
+      FunctionInputs(0)=(ExpressionInputId=3015F82F46E48A4DBC719988EE9E66E4,Input=(OutputIndex=-1,InputName="Texture UV"))
+      FunctionInputs(1)=(ExpressionInputId=BADAE3844BFEBE0ED69A60B1F8B84FC9,Input=(Expression=MaterialExpressionSceneTexture'"PP_Outliner_M:MaterialExpressionSceneTexture_4"',OutputIndex=2,InputName="Texel Offset"))
+      FunctionOutputs(0)=(ExpressionOutputId=FC1BE3644C14FD0892BA729C330739AE,Output=(OutputName="Middle-Center"))
+      FunctionOutputs(1)=(ExpressionOutputId=310FFF8A4E0690A48C196198CD2E96D2,Output=(OutputName="Middle-Left"))
+      FunctionOutputs(2)=(ExpressionOutputId=DEAB3B82470C5AED4FEED9B8CFDABF16,Output=(OutputName="Bottom-Left"))
+      FunctionOutputs(3)=(ExpressionOutputId=BDD57A5642B142079B1CEBA3B017A8F7,Output=(OutputName="Top-Center"))
+      FunctionOutputs(4)=(ExpressionOutputId=9E193E1C47C920DB82C02A9CF23C7FB4,Output=(OutputName="Top-Left"))
+      FunctionOutputs(5)=(ExpressionOutputId=06E45D07440D7E1FD551C99111FDBE85,Output=(OutputName="Bottom-Center"))
+      FunctionOutputs(6)=(ExpressionOutputId=1EDB4BCE495378ABB6AD4BAFEB29E529,Output=(OutputName="Top-Right"))
+      FunctionOutputs(7)=(ExpressionOutputId=6C15E51745BF073CAAD51590834026E1,Output=(OutputName="Middle-Right"))
+      FunctionOutputs(8)=(ExpressionOutputId=05A141954B5EFB5E499A8F826E22C619,Output=(OutputName="Bottom-Right"))
+      MaterialExpressionEditorX=-3890
+      MaterialExpressionEditorY=-2328
+      MaterialExpressionGuid=372AB1394A2AEA8E3EB1E08D16E8185B
+      Material=Material'"PP_Outliner_M"'
+      Desc="Calculate texel offsets for 8 pixels adjacent to current pixel"
+      Outputs(0)=(OutputName="Middle-Center")
+      Outputs(1)=(OutputName="Middle-Left")
+      Outputs(2)=(OutputName="Bottom-Left")
+      Outputs(3)=(OutputName="Top-Center")
+      Outputs(4)=(OutputName="Top-Left")
+      Outputs(5)=(OutputName="Bottom-Center")
+      Outputs(6)=(OutputName="Top-Right")
+      Outputs(7)=(OutputName="Middle-Right")
+      Outputs(8)=(OutputName="Bottom-Right")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_15"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',OutputIndex=4,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3330
+      MaterialExpressionEditorY=-2368
+      MaterialExpressionGuid=8A3550524C38A3286BCE20BE9910DD84
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_16"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',OutputIndex=5,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3070
+      MaterialExpressionEditorY=-2368
+      MaterialExpressionGuid=65B134FA4C364999218AFE92AF781773
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_17"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',OutputIndex=6,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-2810
+      MaterialExpressionEditorY=-2368
+      MaterialExpressionGuid=FC7B962A4146239D6A7009932C24DC17
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_18"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',OutputIndex=1,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3330
+      MaterialExpressionEditorY=-2228
+      MaterialExpressionGuid=B330674F41B6405A539F9A89DFE130B6
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_19"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3070
+      MaterialExpressionEditorY=-2228
+      MaterialExpressionGuid=EBCC34804D65E8C984736199FEB61288
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_20"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',OutputIndex=7,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-2810
+      MaterialExpressionEditorY=-2228
+      MaterialExpressionGuid=64ABDEA347FED739875CFC8503AB5E53
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_21"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',OutputIndex=2,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3330
+      MaterialExpressionEditorY=-2088
+      MaterialExpressionGuid=913D9F824619A3529209E1ACDAEC4B87
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_22"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',OutputIndex=3,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3070
+      MaterialExpressionEditorY=-2088
+      MaterialExpressionGuid=CED542D646D3C11A7F3583A63F6D53AF
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_23"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_14"',OutputIndex=8,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-2810
+      MaterialExpressionEditorY=-2088
+      MaterialExpressionGuid=8324A42845AF7201E1DB1D888D96A4C6
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_24"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ConvolveTexture.MF_ConvolveTexture"'
+      FunctionInputs(0)=(ExpressionInputId=62FD9DE14A8B79EF5EE0DB90E150E7F5,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_29"',InputName="Middle-Left"))
+      FunctionInputs(1)=(ExpressionInputId=49AD4B1041DA1F9EF1A94C994DB669CB,Input=(Expression=MaterialExpressionConstant3Vector'"PP_Outliner_M:MaterialExpressionConstant3Vector_7"',InputName="Row1"))
+      FunctionInputs(2)=(ExpressionInputId=602C680F4C0AD0CFC3FFB1905AD30787,Input=(Expression=MaterialExpressionConstant3Vector'"PP_Outliner_M:MaterialExpressionConstant3Vector_8"',InputName="Row2"))
+      FunctionInputs(3)=(ExpressionInputId=639D73FD4A2A4E23E94837BE75EE478A,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_26"',InputName="Top-Left"))
+      FunctionInputs(4)=(ExpressionInputId=B3D8DFFC44E9BB9D23C7F0994155EB23,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_27"',InputName="Top-Center"))
+      FunctionInputs(5)=(ExpressionInputId=348721E64EBBDD93E8FDB19526C56145,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_28"',InputName="Top-Right"))
+      FunctionInputs(6)=(ExpressionInputId=B764223B40B1EDBB4C921F9E412CA8D5,Input=(Expression=MaterialExpressionConstant3Vector'"PP_Outliner_M:MaterialExpressionConstant3Vector_6"',InputName="Row0"))
+      FunctionInputs(7)=(ExpressionInputId=30E896CA49E9063F48E2C79FB0EB47D4,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_30"',InputName="Middle-Center"))
+      FunctionInputs(8)=(ExpressionInputId=C5C345A94C05AFEEC298239B867256ED,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_31"',InputName="Middle-Right"))
+      FunctionInputs(9)=(ExpressionInputId=313EB124454664C556B2359D44393BB2,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_32"',InputName="Bottom-Left"))
+      FunctionInputs(10)=(ExpressionInputId=346B56684E6A5A867766CDA883402060,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_33"',InputName="Bottom-Center"))
+      FunctionInputs(11)=(ExpressionInputId=2CD56D934FBC1DAE4419809C1BC1EF31,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_34"',InputName="Bottom-Right"))
+      FunctionOutputs(0)=(ExpressionOutputId=4200A56C4BD1860E67C26584E1749DAA,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-2600
+      MaterialExpressionEditorY=-1580
+      MaterialExpressionGuid=1CB3F0964761405459433891121228EC
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_25"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_SampleSceneTextureNeighbourUVs.MF_SampleSceneTextureNeighbourUVs"'
+      FunctionInputs(0)=(ExpressionInputId=3015F82F46E48A4DBC719988EE9E66E4,Input=(OutputIndex=-1,InputName="Texture UV"))
+      FunctionInputs(1)=(ExpressionInputId=BADAE3844BFEBE0ED69A60B1F8B84FC9,Input=(Expression=MaterialExpressionSceneTexture'"PP_Outliner_M:MaterialExpressionSceneTexture_5"',OutputIndex=2,InputName="Texel Offset"))
+      FunctionOutputs(0)=(ExpressionOutputId=FC1BE3644C14FD0892BA729C330739AE,Output=(OutputName="Middle-Center"))
+      FunctionOutputs(1)=(ExpressionOutputId=310FFF8A4E0690A48C196198CD2E96D2,Output=(OutputName="Middle-Left"))
+      FunctionOutputs(2)=(ExpressionOutputId=DEAB3B82470C5AED4FEED9B8CFDABF16,Output=(OutputName="Bottom-Left"))
+      FunctionOutputs(3)=(ExpressionOutputId=BDD57A5642B142079B1CEBA3B017A8F7,Output=(OutputName="Top-Center"))
+      FunctionOutputs(4)=(ExpressionOutputId=9E193E1C47C920DB82C02A9CF23C7FB4,Output=(OutputName="Top-Left"))
+      FunctionOutputs(5)=(ExpressionOutputId=06E45D07440D7E1FD551C99111FDBE85,Output=(OutputName="Bottom-Center"))
+      FunctionOutputs(6)=(ExpressionOutputId=1EDB4BCE495378ABB6AD4BAFEB29E529,Output=(OutputName="Top-Right"))
+      FunctionOutputs(7)=(ExpressionOutputId=6C15E51745BF073CAAD51590834026E1,Output=(OutputName="Middle-Right"))
+      FunctionOutputs(8)=(ExpressionOutputId=05A141954B5EFB5E499A8F826E22C619,Output=(OutputName="Bottom-Right"))
+      MaterialExpressionEditorX=-4057
+      MaterialExpressionEditorY=-1337
+      MaterialExpressionGuid=906E721A4695F502471D859A4D16DD04
+      Material=Material'"PP_Outliner_M"'
+      Desc="Calculate texel offsets for 8 pixels adjacent to current pixel"
+      Outputs(0)=(OutputName="Middle-Center")
+      Outputs(1)=(OutputName="Middle-Left")
+      Outputs(2)=(OutputName="Bottom-Left")
+      Outputs(3)=(OutputName="Top-Center")
+      Outputs(4)=(OutputName="Top-Left")
+      Outputs(5)=(OutputName="Bottom-Center")
+      Outputs(6)=(OutputName="Top-Right")
+      Outputs(7)=(OutputName="Middle-Right")
+      Outputs(8)=(OutputName="Bottom-Right")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_26"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',OutputIndex=4,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3497
+      MaterialExpressionEditorY=-1377
+      MaterialExpressionGuid=DF43377641E5A74EB6B2D4AE4956CA86
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_27"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',OutputIndex=5,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3237
+      MaterialExpressionEditorY=-1377
+      MaterialExpressionGuid=17F349FD4F296586E52B508300ED031B
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_28"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',OutputIndex=6,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-2977
+      MaterialExpressionEditorY=-1377
+      MaterialExpressionGuid=9798B3554FDF5AAF9ED1E4B72835F1A8
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_29"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',OutputIndex=1,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3497
+      MaterialExpressionEditorY=-1237
+      MaterialExpressionGuid=B2A694254D8C1CD99272FEBCA4374833
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_30"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3237
+      MaterialExpressionEditorY=-1237
+      MaterialExpressionGuid=74D9E247483D9A8D33CFFCB4805AB817
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_31"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',OutputIndex=7,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-2977
+      MaterialExpressionEditorY=-1237
+      MaterialExpressionGuid=09E8460748A456C21343889EC884B3A9
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_32"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',OutputIndex=2,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3497
+      MaterialExpressionEditorY=-1097
+      MaterialExpressionGuid=0B5864F54EB66098BF7038A0797C06A4
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_33"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',OutputIndex=3,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-3237
+      MaterialExpressionEditorY=-1097
+      MaterialExpressionGuid=F590B17643B9642FA521C3B770147D56
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_34"
+      MaterialFunction=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"'
+      FunctionInputs(0)=(ExpressionInputId=C247C3B64B7BFE73279E749C993D697D,Input=(Expression=MaterialExpressionMaterialFunctionCall'"PP_Outliner_M:MaterialExpressionMaterialFunctionCall_25"',OutputIndex=8,InputName="UV"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC50E50F4F7AA61DEDF6719537EDFC7A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-2977
+      MaterialExpressionEditorY=-1097
+      MaterialExpressionGuid=C5ACACCB42594943BD2DED826E0033E4
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_35"
+      MaterialFunction=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/VectorLength.VectorLength"'
+      FunctionInputs(0)=(ExpressionInputId=E06081AD4255F67C6D398889E3CE73BA,Input=(Expression=MaterialExpressionAppendVector'"PP_Outliner_M:MaterialExpressionAppendVector_0"',InputName="Vector 2"))
+      FunctionInputs(1)=(ExpressionInputId=1F411C544AE4A9ACC5F5F8A2A099B309,Input=(OutputIndex=-1,InputName="Vector 3"))
+      FunctionOutputs(0)=(ExpressionOutputId=3C53F2D54FE1029372151E82C85F7755,Output=(OutputName="V2 Length"))
+      FunctionOutputs(1)=(ExpressionOutputId=F186F43445EF47104CD650A242DEAECE,Output=(OutputName="V3 Length"))
+      MaterialExpressionEditorX=-1797
+      MaterialExpressionEditorY=-1857
+      MaterialExpressionGuid=94407E0A47BA88A54F1173AA17BB0638
+      Material=Material'"PP_Outliner_M"'
+      Outputs(0)=(OutputName="V2 Length")
+      Outputs(1)=(OutputName="V3 Length")
+   End Object
+   Begin Object Name="MaterialExpressionSceneTexture_4"
+      Coordinates=(OutputIndex=4)
+      SceneTextureId=PPI_CustomDepth
+      MaterialExpressionEditorX=-4292
+      MaterialExpressionEditorY=-2376
+      MaterialExpressionGuid=EC2E48C54DDB39B8441AE18995934645
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionSceneTexture_5"
+      Coordinates=(OutputIndex=4)
+      SceneTextureId=PPI_PostProcessInput0
+      MaterialExpressionEditorX=-4420
+      MaterialExpressionEditorY=-1340
+      MaterialExpressionGuid=C33EC005460EFB4473ECE885396036B8
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionSceneTexture_8"
+      SceneTextureId=PPI_PostProcessInput0
+      MaterialExpressionEditorX=-2020
+      MaterialExpressionEditorY=-1360
+      MaterialExpressionGuid=8E5ADF8C4C5B069C34C402837052A151
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_2"
+      DefaultValue=(R=0.715000,G=0.244203,B=0.000000,A=1.000000)
+      ParameterName="OutlineColor"
+      ExpressionGUID=4F5F886547E95946E73571BE0F2F7B1E
+      MaterialExpressionEditorX=-1900
+      MaterialExpressionEditorY=-1620
+      MaterialExpressionGuid=43967A7F4997068589348CBC90B3E5D7
+      Material=Material'"PP_Outliner_M"'
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   EmissiveColor=(Expression=MaterialExpressionIf'"MaterialExpressionIf_0"')
+   MaterialDomain=MD_PostProcess
+   ShadingModel=MSM_Unlit
+   EditorX=-720
+   EditorY=-1472
+   Expressions(0)=MaterialExpressionIf'"MaterialExpressionIf_0"'
+   Expressions(1)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_13"'
+   Expressions(2)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_14"'
+   Expressions(3)=MaterialExpressionConstant3Vector'"MaterialExpressionConstant3Vector_3"'
+   Expressions(4)=MaterialExpressionConstant3Vector'"MaterialExpressionConstant3Vector_4"'
+   Expressions(5)=MaterialExpressionConstant3Vector'"MaterialExpressionConstant3Vector_5"'
+   Expressions(6)=MaterialExpressionSceneTexture'"MaterialExpressionSceneTexture_4"'
+   Expressions(7)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_15"'
+   Expressions(8)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_16"'
+   Expressions(9)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_17"'
+   Expressions(10)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_18"'
+   Expressions(11)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_19"'
+   Expressions(12)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_20"'
+   Expressions(13)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_21"'
+   Expressions(14)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_22"'
+   Expressions(15)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_23"'
+   Expressions(16)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_24"'
+   Expressions(17)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_25"'
+   Expressions(18)=MaterialExpressionConstant3Vector'"MaterialExpressionConstant3Vector_6"'
+   Expressions(19)=MaterialExpressionConstant3Vector'"MaterialExpressionConstant3Vector_7"'
+   Expressions(20)=MaterialExpressionConstant3Vector'"MaterialExpressionConstant3Vector_8"'
+   Expressions(21)=MaterialExpressionSceneTexture'"MaterialExpressionSceneTexture_5"'
+   Expressions(22)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_26"'
+   Expressions(23)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_27"'
+   Expressions(24)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_28"'
+   Expressions(25)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_29"'
+   Expressions(26)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_30"'
+   Expressions(27)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_31"'
+   Expressions(28)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_32"'
+   Expressions(29)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_33"'
+   Expressions(30)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_34"'
+   Expressions(31)=MaterialExpressionAppendVector'"MaterialExpressionAppendVector_0"'
+   Expressions(32)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_35"'
+   Expressions(33)=MaterialExpressionComponentMask'"MaterialExpressionComponentMask_6"'
+   Expressions(34)=MaterialExpressionComponentMask'"MaterialExpressionComponentMask_7"'
+   Expressions(35)=MaterialExpressionSceneTexture'"MaterialExpressionSceneTexture_8"'
+   Expressions(36)=MaterialExpressionVectorParameter'"MaterialExpressionVectorParameter_2"'
+   Expressions(37)=MaterialExpressionComponentMask'"MaterialExpressionComponentMask_10"'
+   EditorComments(0)=MaterialExpressionComment'"MaterialExpressionComment_0"'
+   EditorComments(1)=MaterialExpressionComment'"MaterialExpressionComment_1"'
+   EditorComments(2)=MaterialExpressionComment'"MaterialExpressionComment_3"'
+   ParameterGroupData(0)=(GroupName="None")
+   MaterialFunctionInfos(0)=(StateId=A9E4F02146161CC9A22A4F96722D7232,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/SplitComponents.SplitComponents"')
+   MaterialFunctionInfos(1)=(StateId=88592C914EB1FC8C40FF73ABB69D9727,Function=MaterialFunction'"/Game/Materials/MF_ConvolveTexture.MF_ConvolveTexture"')
+   MaterialFunctionInfos(2)=(StateId=372E82E74A399F3977060E8B65AF6B8F,Function=MaterialFunction'"/Game/Materials/MF_SampleSceneTextureNeighbourUVs.MF_SampleSceneTextureNeighbourUVs"')
+   MaterialFunctionInfos(3)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(4)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(5)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(6)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(7)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(8)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(9)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(10)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(11)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(12)=(StateId=A9E4F02146161CC9A22A4F96722D7232,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/SplitComponents.SplitComponents"')
+   MaterialFunctionInfos(13)=(StateId=88592C914EB1FC8C40FF73ABB69D9727,Function=MaterialFunction'"/Game/Materials/MF_ConvolveTexture.MF_ConvolveTexture"')
+   MaterialFunctionInfos(14)=(StateId=372E82E74A399F3977060E8B65AF6B8F,Function=MaterialFunction'"/Game/Materials/MF_SampleSceneTextureNeighbourUVs.MF_SampleSceneTextureNeighbourUVs"')
+   MaterialFunctionInfos(15)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(16)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(17)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(18)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(19)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(20)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(21)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(22)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(23)=(StateId=6231D72347EB4B243482978755E76ECD,Function=MaterialFunction'"/Game/Materials/MF_ExtractDepth.MF_ExtractDepth"')
+   MaterialFunctionInfos(24)=(StateId=162D6D2B48CD8C456AA56F8E93FB317B,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/VectorLength.VectorLength"')
+   bCanMaskedBeAssumedOpaque=True
+   BlendableLocation=BL_BeforeTonemapping
+   StateId=FD3E717745E7E90A3DFB27A90ADF4DAC
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'"SceneThumbnailInfoWithPrimitive_0"'
+   LightingGuid=0A6961D449D4188214C95BBB2F812547
+End Object
