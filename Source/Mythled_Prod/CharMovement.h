@@ -10,6 +10,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/Actor.h"
+#include "Components/SphereComponent.h"
 
 #include "CharMovement.generated.h"
 UCLASS()
@@ -33,6 +35,15 @@ public:
 		UCameraComponent* FollowCamera;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		USphereComponent* ForceHandle;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		AActor* FollowObject;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		AActor* CurrentObject;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float maxWalkSpeed;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
@@ -48,10 +59,31 @@ public:
 		bool canDash;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		bool isHolding;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float dashStop;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		float ForcePower;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		float ForceDistance;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		FTimerHandle unusedHandle;
+
+	UPROPERTY(EditAnywhere, Category = "Location")
+		FVector ForceLocation;
+
+	UPROPERTY(EditAnywhere, Category = "Location")
+		FQuat ForceRotation;
+
+	UPROPERTY(EditAnywhere, Category = "Glow")
+		UPrimitiveComponent* HighlightPrimitive;
+
+	UPROPERTY(EditAnywhere, Category = "Gravity")
+		UPrimitiveComponent* GravityPrimitive;
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 		void Dash();
@@ -76,6 +108,16 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 		void ResetDash();
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void Attraction();
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void Repulsion();
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void UnHold();
+
 
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
