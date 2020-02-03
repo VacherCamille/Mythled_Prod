@@ -3,9 +3,7 @@
 #include "CharMovement.h"
 #include "DrawDebugHelpers.h"
 #include "Runtime/Engine/Public/TimerManager.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
-#include "MotionControllerComponent.h"
 #include "Engine.h"
 
 // Sets default values
