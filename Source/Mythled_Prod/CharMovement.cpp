@@ -1,7 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CharMovement.h"
+#include "DrawDebugHelpers.h"
 #include "Runtime/Engine/Public/TimerManager.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
+#include "Kismet/GameplayStatics.h"
+#include "MotionControllerComponent.h"
+#include "Engine.h"
 
 // Sets default values
 ACharMovement::ACharMovement()
@@ -13,6 +18,8 @@ ACharMovement::ACharMovement()
 	dashDistance = 1500.0f;
 	dashCooldown = 0.5f;
 	dashStop = 1.0f;
+	ForcePower = 100000.0f;
+	ForceDistance = 100000.0f;
 
 	maxWalkSpeed = 450.0f;
 	maxRunSpeed = 600.0f;
@@ -26,6 +33,9 @@ ACharMovement::ACharMovement()
 	GetCharacterMovement()->JumpZVelocity = 500.0f;
 	GetCharacterMovement()->AirControl = 0.2f; 
 
+	FollowObject = NULL;
+	CurrentObject = NULL;
+
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 
@@ -34,6 +44,9 @@ ACharMovement::ACharMovement()
 
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+
+	ForceHandle = CreateDefaultSubobject<USphereComponent>(TEXT("ForceHandle"));
+	ForceHandle->SetupAttachment(FollowCamera);
 
 	FollowCamera->bUsePawnControlRotation = false;
 
@@ -49,13 +62,53 @@ void ACharMovement::BeginPlay()
 	maxRunSpeed = 600.0f;
 	bIsRunning = false;
 	GetCharacterMovement()->MaxWalkSpeed = maxWalkSpeed;
+	isHolding = false;
 }
 
 // Called every frame
 void ACharMovement::Tick(float DeltaTime)
 {
+	
 	Super::Tick(DeltaTime);
 
+	ForceLocation = ForceHandle->GetComponentLocation();
+
+	if (CurrentObject != NULL) {
+		CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
+	}
+
+	FHitResult OutHit;
+
+	FVector Start = FollowCamera->GetComponentLocation();
+	FVector ForwardVector = FollowCamera->GetForwardVector();
+	FVector End = (Start +(ForwardVector * ForceDistance));
+
+	FCollisionQueryParams CollisionParams;
+
+	//DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
+
+	bool isHit = GetWorld()->LineTraceSingleByChannel(OutHit, Start, End, ECC_Visibility, CollisionParams);
+
+	if (isHit) {
+		if (OutHit.bBlockingHit) {	
+			if (OutHit.GetActor()->ActorHasTag("outline")) {
+				//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("You are hitting: %s"), *OutHit.GetActor()->GetName()));
+				//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Impact Point: %s"), *OutHit.ImpactPoint.ToString()));
+				//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Normal Point: %s"), *OutHit.ImpactNormal.ToString()));
+				if (HighlightPrimitive != NULL) {
+					HighlightPrimitive->SetRenderCustomDepth(false);
+				}
+				HighlightPrimitive = OutHit.GetActor()->FindComponentByClass<UPrimitiveComponent>();
+				HighlightPrimitive->SetRenderCustomDepth(true);
+				FollowObject = OutHit.GetActor();
+			}
+			else {
+				if (HighlightPrimitive != NULL) {
+					HighlightPrimitive->SetRenderCustomDepth(false);
+				}
+			}
+		}
+	}
 }
 
 // Called to bind functionality to input
@@ -76,6 +129,11 @@ void ACharMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACharMovement::RunEnd);
 
 	PlayerInputComponent->BindAction("Dash", IE_Pressed, this, &ACharMovement::Dash);
+
+	PlayerInputComponent->BindAction("Attraction", IE_Pressed, this, &ACharMovement::Attraction);
+	PlayerInputComponent->BindAction("Repulsion", IE_Pressed, this, &ACharMovement::Repulsion);
+
+	PlayerInputComponent->BindAction("Grab object", IE_Pressed, this, &ACharMovement::UnHold);
 }
 
 void ACharMovement::MoveForward(float Axis)
@@ -103,8 +161,11 @@ void ACharMovement::MoveRight(float Axis)
 
 void ACharMovement::RunStart()
 {
-	bIsRunning = true;
-	GetCharacterMovement()->MaxWalkSpeed = maxRunSpeed;
+	if (isHolding == false) {
+		bIsRunning = true;
+		GetCharacterMovement()->MaxWalkSpeed = maxRunSpeed;
+	}
+	
 }
 
 void ACharMovement::RunEnd()
@@ -130,7 +191,7 @@ bool ACharMovement::IsRunning()
 
 void ACharMovement::Dash()
 {
-	if (canDash && !GetCharacterMovement()->IsFalling()) 
+	if (canDash && !GetCharacterMovement()->IsFalling() && isHolding == false) 
 	{
 		GetCharacterMovement()->JumpZVelocity = 0.0f;
 		GetCharacterMovement()->BrakingFrictionFactor = 0.0f;
@@ -145,6 +206,8 @@ void ACharMovement::ResetDash()
 	canDash = true;
 }
 
+
+
 void ACharMovement::StopDashing()
 {
 	GetCharacterMovement()->JumpZVelocity = 500.0f;
@@ -153,4 +216,45 @@ void ACharMovement::StopDashing()
 	GetWorldTimerManager().SetTimer(unusedHandle, this, &ACharMovement::ResetDash, dashCooldown, false);
 }
 
+void ACharMovement::Attraction()
+{
+	if (FollowObject != NULL && CurrentObject == NULL && GravityPrimitive == NULL) {
+		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("ATTRACTION")));
+		CurrentObject = FollowObject;
+		GravityPrimitive = CurrentObject->FindComponentByClass<UPrimitiveComponent>();
+		GravityPrimitive->SetEnableGravity(false);
+		//SET LOCATION AND ROTATION OF FOLLOW OBJECT PARENT TO CHARACTER ACTOR
+		CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
+		isHolding = true;
+	}
+}
+
+void ACharMovement::Repulsion()
+{
+	if (CurrentObject != NULL && GravityPrimitive !=NULL) {	
+		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("REPULSION")));
+		//DELETE LINK BETWEEN CURRENT OBJECT AND CHARACTER ACTOR
+		GravityPrimitive->SetEnableGravity(true);
+		GravityPrimitive->AddImpulse(FollowCamera->GetForwardVector() * ForcePower);
+		//ADDFORCE TO THE CURRENT OBJECT ON DIRECTION TO THE FORWARD VECTOR OF FOLLOW CAMERA
+		GravityPrimitive = NULL;
+		CurrentObject = NULL;
+		isHolding = false;
+	}
+	else if (FollowObject != NULL) {
+		if (GetDistanceTo(FollowObject) < 1000.0f) {
+			FollowObject->FindComponentByClass<UPrimitiveComponent>()->AddImpulse(FollowCamera->GetForwardVector()*ForcePower);
+		}	
+	}
+}
+
+void ACharMovement::UnHold()
+{
+	if (isHolding == true) {
+		GravityPrimitive->SetEnableGravity(true);
+		GravityPrimitive = NULL;
+		CurrentObject = NULL;
+		isHolding = false;
+	}
+}
 
