@@ -3,7 +3,7 @@ Binaries
 Saved
 Intermediate
 
-.vs/
+.vs/*
 
 # Compiled Object files
 *.slo
