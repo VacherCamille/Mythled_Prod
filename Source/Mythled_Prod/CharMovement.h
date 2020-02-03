@@ -77,6 +77,9 @@ public:
 		FVector ForceLocation;
 
 	UPROPERTY(EditAnywhere, Category = "Location")
+		FVector NulVelocity;
+
+	UPROPERTY(EditAnywhere, Category = "Location")
 		FQuat ForceRotation;
 
 	UPROPERTY(EditAnywhere, Category = "Glow")
@@ -117,6 +120,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 		void UnHold();
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void FixeRotationPlayer();
 
 
 	void MoveForward(float Axis);

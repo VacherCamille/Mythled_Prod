@@ -18,6 +18,7 @@ ACharMovement::ACharMovement()
 	dashStop = 1.0f;
 	ForcePower = 100000.0f;
 	ForceDistance = 100000.0f;
+	NulVelocity = FVector(0, 0, 0);
 
 	maxWalkSpeed = 450.0f;
 	maxRunSpeed = 600.0f;
@@ -217,6 +218,7 @@ void ACharMovement::Attraction()
 		CurrentObject = FollowObject;
 		GravityPrimitive = CurrentObject->FindComponentByClass<UPrimitiveComponent>();
 		GravityPrimitive->SetEnableGravity(false);
+		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 		//SET LOCATION AND ROTATION OF FOLLOW OBJECT PARENT TO CHARACTER ACTOR
 		CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
 		isHolding = true;
@@ -229,7 +231,9 @@ void ACharMovement::Repulsion()
 		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("REPULSION")));
 		//DELETE LINK BETWEEN CURRENT OBJECT AND CHARACTER ACTOR
 		GravityPrimitive->SetEnableGravity(true);
+		CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 		GravityPrimitive->AddImpulse(FollowCamera->GetForwardVector() * ForcePower);
+		
 		//ADDFORCE TO THE CURRENT OBJECT ON DIRECTION TO THE FORWARD VECTOR OF FOLLOW CAMERA
 		GravityPrimitive = NULL;
 		CurrentObject = NULL;
@@ -246,10 +250,17 @@ void ACharMovement::UnHold()
 {
 	if (isHolding == true) {
 		GravityPrimitive->SetEnableGravity(true);
+		CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 		GravityPrimitive = NULL;
 		CurrentObject = NULL;
 		isHolding = false;
 	}
 }
 
+void ACharMovement::FixeRotationPlayer()
+{
+	FVector MeshPosition = FVector(0.0f, 0.0f, FollowCamera->GetForwardVector().Z);
+	//SetWorldRotation(MeshPosition);
+	//GetRootComponent()->SetRelativeRotation(MeshPosition);
+}
 
