@@ -18,7 +18,6 @@ ACharMovement::ACharMovement()
 	dashStop = 1.0f;
 	ForcePower = 100000.0f;
 	ForceDistance = 100000.0f;
-	NulVelocity = FVector(0, 0, 0);
 
 	maxWalkSpeed = 450.0f;
 	maxRunSpeed = 600.0f;
@@ -49,6 +48,7 @@ ACharMovement::ACharMovement()
 
 	FollowCamera->bUsePawnControlRotation = false;
 
+	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandle"));
 }
 
 
@@ -62,6 +62,7 @@ void ACharMovement::BeginPlay()
 	bIsRunning = false;
 	GetCharacterMovement()->MaxWalkSpeed = maxWalkSpeed;
 	isHolding = false;
+	GravityPrimitive = NULL;
 }
 
 // Called every frame
@@ -70,9 +71,9 @@ void ACharMovement::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	ForceLocation = ForceHandle->GetComponentLocation();
 
-	if (CurrentObject != NULL) {
-		CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
-	}
+	//if (CurrentObject != NULL) {
+		//CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
+	//}
 
 	FHitResult OutHit;
 
@@ -214,12 +215,16 @@ void ACharMovement::StopDashing()
 void ACharMovement::Attraction()
 {
 	if (FollowObject != NULL && CurrentObject == NULL && GravityPrimitive == NULL) {
-		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("ATTRACTION")));
+		GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("ATTRACTION")));
 		CurrentObject = FollowObject;
 		GravityPrimitive = CurrentObject->FindComponentByClass<UPrimitiveComponent>();
-		GravityPrimitive->SetEnableGravity(false);
+
+		//PhysicsHandle->GrabComponentAtLocation(GravityPrimitive, ForceHandle->GetComponentLocation());
+
+		//GravityPrimitive->SetEnableGravity(false);
 		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 		//SET LOCATION AND ROTATION OF FOLLOW OBJECT PARENT TO CHARACTER ACTOR
+
 		CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
 		isHolding = true;
 	}
@@ -228,7 +233,7 @@ void ACharMovement::Attraction()
 void ACharMovement::Repulsion()
 {
 	if (CurrentObject != NULL && GravityPrimitive != NULL) {
-		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("REPULSION")));
+		GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("REPULSION")));
 		//DELETE LINK BETWEEN CURRENT OBJECT AND CHARACTER ACTOR
 		GravityPrimitive->SetEnableGravity(true);
 		CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;

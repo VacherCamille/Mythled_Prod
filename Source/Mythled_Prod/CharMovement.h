@@ -12,6 +12,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 
 #include "CharMovement.generated.h"
 UCLASS()
@@ -36,6 +37,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		USphereComponent* ForceHandle;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		UPhysicsHandleComponent* PhysicsHandle;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		AActor* FollowObject;
