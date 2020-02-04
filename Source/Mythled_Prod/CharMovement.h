@@ -38,7 +38,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		USphereComponent* ForceHandle;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Physics)
 		UPhysicsHandleComponent* PhysicsHandle;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
@@ -127,6 +127,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 		void FixeRotationPlayer();
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void ResetRotation();
 
 
 	void MoveForward(float Axis);

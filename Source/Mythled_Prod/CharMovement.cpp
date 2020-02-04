@@ -29,7 +29,7 @@ ACharMovement::ACharMovement()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
 	GetCharacterMovement()->JumpZVelocity = 500.0f;
-	GetCharacterMovement()->AirControl = 0.2f; 
+	GetCharacterMovement()->AirControl = 0.5f; 
 
 	FollowObject = NULL;
 	CurrentObject = NULL;
@@ -47,8 +47,6 @@ ACharMovement::ACharMovement()
 	ForceHandle->SetupAttachment(FollowCamera);
 
 	FollowCamera->bUsePawnControlRotation = false;
-
-	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandle"));
 }
 
 
@@ -63,6 +61,7 @@ void ACharMovement::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = maxWalkSpeed;
 	isHolding = false;
 	GravityPrimitive = NULL;
+	PhysicsHandle = FindComponentByClass<UPhysicsHandleComponent>();
 }
 
 // Called every frame
@@ -71,9 +70,10 @@ void ACharMovement::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	ForceLocation = ForceHandle->GetComponentLocation();
 
-	//if (CurrentObject != NULL) {
-		//CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
-	//}
+	if (CurrentObject != NULL) {
+		PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
+		PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
+	}
 
 	FHitResult OutHit;
 
@@ -133,6 +133,7 @@ void ACharMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Repulsion", IE_Pressed, this, &ACharMovement::Repulsion);
 
 	PlayerInputComponent->BindAction("Grab object", IE_Pressed, this, &ACharMovement::UnHold);
+	//PlayerInputComponent->BindAction("ResetRotation", IE_Pressed, this, &ACharMovement::ResetRotation);
 }
 
 void ACharMovement::MoveForward(float Axis)
@@ -215,17 +216,20 @@ void ACharMovement::StopDashing()
 void ACharMovement::Attraction()
 {
 	if (FollowObject != NULL && CurrentObject == NULL && GravityPrimitive == NULL) {
-		GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("ATTRACTION")));
+		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("ATTRACTION")));
 		CurrentObject = FollowObject;
 		GravityPrimitive = CurrentObject->FindComponentByClass<UPrimitiveComponent>();
+		//CurrentObject->FindComponentByClass<UPhysicsConstraintComponent>();
+		CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::TeleportPhysics);
 
-		//PhysicsHandle->GrabComponentAtLocation(GravityPrimitive, ForceHandle->GetComponentLocation());
+		PhysicsHandle->GrabComponentAtLocationWithRotation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
+
+		ResetRotation();
+		//PhysicsHandle->GrabComponentAtLocation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation());
 
 		//GravityPrimitive->SetEnableGravity(false);
 		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
-		//SET LOCATION AND ROTATION OF FOLLOW OBJECT PARENT TO CHARACTER ACTOR
-
-		CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
+		//SET LOCATION AND ROTATION OF FOLLOW OBJECT PARENT TO CHARACTER ACTOR	
 		isHolding = true;
 	}
 }
@@ -233,12 +237,14 @@ void ACharMovement::Attraction()
 void ACharMovement::Repulsion()
 {
 	if (CurrentObject != NULL && GravityPrimitive != NULL) {
-		GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("REPULSION")));
+		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("REPULSION")));
 		//DELETE LINK BETWEEN CURRENT OBJECT AND CHARACTER ACTOR
-		GravityPrimitive->SetEnableGravity(true);
-		CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
-		GravityPrimitive->AddImpulse(FollowCamera->GetForwardVector() * ForcePower);
+		//GravityPrimitive->SetEnableGravity(true);
+		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 		
+		PhysicsHandle->ReleaseComponent();
+
+		GravityPrimitive->AddImpulse(FollowCamera->GetForwardVector() * ForcePower);
 		//ADDFORCE TO THE CURRENT OBJECT ON DIRECTION TO THE FORWARD VECTOR OF FOLLOW CAMERA
 		GravityPrimitive = NULL;
 		CurrentObject = NULL;
@@ -254,8 +260,9 @@ void ACharMovement::Repulsion()
 void ACharMovement::UnHold()
 {
 	if (isHolding == true) {
-		GravityPrimitive->SetEnableGravity(true);
-		CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
+		PhysicsHandle->ReleaseComponent();
+		//GravityPrimitive->SetEnableGravity(true);
+		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 		GravityPrimitive = NULL;
 		CurrentObject = NULL;
 		isHolding = false;
@@ -267,5 +274,13 @@ void ACharMovement::FixeRotationPlayer()
 	FVector MeshPosition = FVector(0.0f, 0.0f, FollowCamera->GetForwardVector().Z);
 	//SetWorldRotation(MeshPosition);
 	//GetRootComponent()->SetRelativeRotation(MeshPosition);
+}
+
+void ACharMovement::ResetRotation()
+{
+	if (CurrentObject != NULL && isHolding == true) {
+		CurrentObject->SetActorRelativeRotation(FRotator(0, 0, 0));
+	}
+	
 }
 
