@@ -223,7 +223,7 @@ void ACharMovement::ResetDash()
 void ACharMovement::StopDashing()
 {
 	GetCharacterMovement()->JumpZVelocity = 500.0f;
-	GetCharacterMovement()->StopMovementImmediately();
+	//GetCharacterMovement()->StopMovementImmediately();
 	GetCharacterMovement()->BrakingFrictionFactor = 2.0f;
 	GetWorldTimerManager().SetTimer(unusedHandle, this, &ACharMovement::ResetDash, dashCooldown, false);
 }
