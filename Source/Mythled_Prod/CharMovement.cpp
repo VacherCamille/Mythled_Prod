@@ -148,6 +148,8 @@ void ACharMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Repulsion", IE_Pressed, this, &ACharMovement::Repulsion);
 
 	PlayerInputComponent->BindAction("Grab object", IE_Pressed, this, &ACharMovement::UnHold);
+	PlayerInputComponent->BindAction("Exit/Menu", IE_Pressed, this, &ACharMovement::RestartMap);
+
 	//PlayerInputComponent->BindAction("ResetRotation", IE_Pressed, this, &ACharMovement::ResetRotation);
 }
 
@@ -309,5 +311,10 @@ void ACharMovement::ResetRotation()
 		CurrentObject->SetActorRelativeRotation(FRotator(0, 0, 0));
 	}
 	
+}
+
+void ACharMovement::RestartMap()
+{
+	UGameplayStatics::OpenLevel(this, "Sandbox_MAP");
 }
 

@@ -131,6 +131,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Animation)
 		void ResetRotation();
 
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void RestartMap();
+
 
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
