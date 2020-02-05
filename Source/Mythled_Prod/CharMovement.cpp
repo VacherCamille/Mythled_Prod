@@ -33,6 +33,7 @@ ACharMovement::ACharMovement()
 
 	FollowObject = NULL;
 	CurrentObject = NULL;
+	isHolding = false;
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -61,6 +62,7 @@ void ACharMovement::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = maxWalkSpeed;
 	isHolding = false;
 	GravityPrimitive = NULL;
+	//GetMesh()->SetWorldRotation(FRotator(0, -90, 0));
 	PhysicsHandle = FindComponentByClass<UPhysicsHandleComponent>();
 }
 
@@ -70,11 +72,21 @@ void ACharMovement::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	ForceLocation = ForceHandle->GetComponentLocation();
 
-	if (CurrentObject != NULL) {
-		PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
-		PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
+	if (isHolding == false && HighlightPrimitive != NULL) {
+		HighlightPrimitive->SetRenderCustomDepth(false);
+		FollowObject = NULL;
+		CurrentObject = NULL;
 	}
 
+	if(isHolding == true){
+		//FIXEROTATION
+		//FRotator NewRotator = FollowCamera->GetComponentRotation();
+		//NewRotator.Pitch = 0;
+		//NewRotator.Roll = 0;
+		//GetMesh()->SetWorldRotation(NewRotator);
+		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("HEY")));
+	}
+	
 	FHitResult OutHit;
 
 	FVector Start = FollowCamera->GetComponentLocation();
@@ -107,7 +119,10 @@ void ACharMovement::Tick(float DeltaTime)
 			}
 		}
 	}
-
+	if (CurrentObject != NULL) {
+		PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
+		PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
+	}
 }
 
 // Called to bind functionality to input
@@ -208,7 +223,7 @@ void ACharMovement::ResetDash()
 void ACharMovement::StopDashing()
 {
 	GetCharacterMovement()->JumpZVelocity = 500.0f;
-	GetCharacterMovement()->StopMovementImmediately();
+	//GetCharacterMovement()->StopMovementImmediately();
 	GetCharacterMovement()->BrakingFrictionFactor = 2.0f;
 	GetWorldTimerManager().SetTimer(unusedHandle, this, &ACharMovement::ResetDash, dashCooldown, false);
 }
