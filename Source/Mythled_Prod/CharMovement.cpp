@@ -62,7 +62,6 @@ void ACharMovement::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = maxWalkSpeed;
 	isHolding = false;
 	GravityPrimitive = NULL;
-	//GetMesh()->SetWorldRotation(FRotator(0, -90, 0));
 	PhysicsHandle = FindComponentByClass<UPhysicsHandleComponent>();
 }
 
@@ -80,10 +79,11 @@ void ACharMovement::Tick(float DeltaTime)
 
 	if(isHolding == true){
 		//FIXEROTATION
-		//FRotator NewRotator = FollowCamera->GetComponentRotation();
-		//NewRotator.Pitch = 0;
-		//NewRotator.Roll = 0;
-		//GetMesh()->SetWorldRotation(NewRotator);
+		FRotator NewRotator = FollowCamera->GetComponentRotation();
+		NewRotator.Pitch = 0;
+		NewRotator.Roll = 0;
+		//NewRotator.Yaw = NewRotator.Yaw - 90;
+		GetRootComponent()->SetWorldRotation(NewRotator);
 		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("HEY")));
 	}
 	
@@ -165,7 +165,7 @@ void ACharMovement::MoveForward(float Axis)
 
 void ACharMovement::MoveRight(float Axis)
 {
-	moveForwardValue = Axis;
+	moveRightValue = Axis;
 
 	FRotator Rotation = Controller->GetControlRotation();
 	FRotator YawRotation(0.0f, Rotation.Yaw, 0.0f);
@@ -263,6 +263,12 @@ void ACharMovement::Repulsion()
 		//ADDFORCE TO THE CURRENT OBJECT ON DIRECTION TO THE FORWARD VECTOR OF FOLLOW CAMERA
 		GravityPrimitive = NULL;
 		CurrentObject = NULL;
+
+		FRotator NewRotator = FollowCamera->GetComponentRotation();
+		NewRotator.Pitch = 0;
+		NewRotator.Roll = 0;
+		GetRootComponent()->SetWorldRotation(NewRotator);
+
 		isHolding = false;
 	}
 	else if (FollowObject != NULL) {
@@ -280,13 +286,19 @@ void ACharMovement::UnHold()
 		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 		GravityPrimitive = NULL;
 		CurrentObject = NULL;
+
+		FRotator NewRotator = FollowCamera->GetComponentRotation();
+		NewRotator.Pitch = 0;
+		NewRotator.Roll = 0;
+		GetRootComponent()->SetWorldRotation(NewRotator);
+
 		isHolding = false;
 	}
 }
 
 void ACharMovement::FixeRotationPlayer()
 {
-	FVector MeshPosition = FVector(0.0f, 0.0f, FollowCamera->GetForwardVector().Z);
+	//FVector MeshPosition = FVector(0.0f, 0.0f, FollowCamera->GetForwardVector().Z);
 	//SetWorldRotation(MeshPosition);
 	//GetRootComponent()->SetRelativeRotation(MeshPosition);
 }
