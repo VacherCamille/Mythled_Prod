@@ -28,8 +28,8 @@ ACharMovement::ACharMovement()
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
-	GetCharacterMovement()->JumpZVelocity = 500.0f;
-	GetCharacterMovement()->AirControl = 0.5f; 
+	GetCharacterMovement()->JumpZVelocity = 450.0f;
+	GetCharacterMovement()->AirControl = 0.5f;
 
 	FollowObject = NULL;
 	CurrentObject = NULL;
