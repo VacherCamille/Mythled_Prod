@@ -6,6 +6,7 @@
 #include "Components/CapsuleComponent.h" 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/PointLightComponent.h"
 #include "Altar.generated.h"
 
 UCLASS()
@@ -44,6 +45,6 @@ public:
 	UFUNCTION()
 		void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	UFUNCTION(BlueprintCallable, Category = Animation)
+	UFUNCTION()
 		void ChangeIsActivated();
 };
