@@ -13,6 +13,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Altar.h"
 
 #include "CharMovement.generated.h"
 UCLASS()
@@ -46,6 +47,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		AActor* CurrentObject;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		AAltar* InteractObject;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float maxWalkSpeed;
@@ -123,7 +127,7 @@ public:
 		void Repulsion();
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
-		void UnHold();
+		void Interact();
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 		void FixeRotationPlayer();
