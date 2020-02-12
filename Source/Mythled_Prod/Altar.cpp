@@ -35,6 +35,7 @@ void AAltar::BeginPlay()
 void AAltar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	FindComponentByClass<UParticleSystemComponent>()
 }
 
 void AAltar::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
