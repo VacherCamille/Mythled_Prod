@@ -147,7 +147,7 @@ void ACharMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Attraction", IE_Pressed, this, &ACharMovement::Attraction);
 	PlayerInputComponent->BindAction("Repulsion", IE_Pressed, this, &ACharMovement::Repulsion);
 
-	PlayerInputComponent->BindAction("Grab object", IE_Pressed, this, &ACharMovement::UnHold);
+	PlayerInputComponent->BindAction("Grab object", IE_Pressed, this, &ACharMovement::Interact);
 	PlayerInputComponent->BindAction("Exit/Menu", IE_Pressed, this, &ACharMovement::RestartMap);
 
 	//PlayerInputComponent->BindAction("ResetRotation", IE_Pressed, this, &ACharMovement::ResetRotation);
@@ -280,7 +280,7 @@ void ACharMovement::Repulsion()
 	}
 }
 
-void ACharMovement::UnHold()
+void ACharMovement::Interact()
 {
 	if (isHolding == true) {
 		PhysicsHandle->ReleaseComponent();
@@ -295,6 +295,11 @@ void ACharMovement::UnHold()
 		GetRootComponent()->SetWorldRotation(NewRotator);
 
 		isHolding = false;
+	}
+	if (isHolding == false) {
+		if (InteractObject) {
+			InteractObject->ChangeIsActivated();
+		}
 	}
 }
 

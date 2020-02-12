@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.25807.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{4B060987-D8A7-4503-B85B-E272E946D964}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{B4CF0868-B741-429B-BDAA-F1FB50BB8B0F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Games", "Games", "{255A2191-C3FF-4D4A-9320-42D209D41D28}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Games", "Games", "{E895FDFC-336F-410F-963A-C84FDE79D678}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UE4", "Intermediate\ProjectFiles\UE4.vcxproj", "{09BB5D07-0139-4A87-9061-073681BD57E9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mythled_Prod", "Intermediate\ProjectFiles\Mythled_Prod.vcxproj", "{91579FBA-7F4A-4872-B59C-E5F564B585D4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visualizers", "Visualizers", "{3C6BBFD6-6D6A-420A-9007-8DB72AE5FEC2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visualizers", "Visualizers", "{46D5BFB3-022D-4832-B613-4D5396F3051F}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\..\Program Files\Epic Games\UE_4.21\Engine\Extras\VisualStudioDebugging\UE4.natvis = ..\..\..\..\..\..\Program Files\Epic Games\UE_4.21\Engine\Extras\VisualStudioDebugging\UE4.natvis
+		..\..\..\..\..\Program Files\Epic Games\UE_4.21\Engine\Extras\VisualStudioDebugging\UE4.natvis = ..\..\..\..\..\Program Files\Epic Games\UE_4.21\Engine\Extras\VisualStudioDebugging\UE4.natvis
 	EndProjectSection
 EndProject
 Global
@@ -81,7 +81,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{09BB5D07-0139-4A87-9061-073681BD57E9} = {4B060987-D8A7-4503-B85B-E272E946D964}
-		{91579FBA-7F4A-4872-B59C-E5F564B585D4} = {255A2191-C3FF-4D4A-9320-42D209D41D28}
+		{09BB5D07-0139-4A87-9061-073681BD57E9} = {B4CF0868-B741-429B-BDAA-F1FB50BB8B0F}
+		{91579FBA-7F4A-4872-B59C-E5F564B585D4} = {E895FDFC-336F-410F-963A-C84FDE79D678}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8D68386-6DB6-473E-A802-BB2026D6D736}
 	EndGlobalSection
 EndGlobal
