@@ -35,6 +35,8 @@ void AAltar::BeginPlay()
 void AAltar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (isActivated) FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.0, 1.0, 0.0, 1.0));
+	else FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(1.0, 0.0, 0.0, 1.0));
 }
 
 void AAltar::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)

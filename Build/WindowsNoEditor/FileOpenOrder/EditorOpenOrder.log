@@ -1,11 +1,11 @@
-"C:/Users/nat/Documents/GitHub/Mythled_Prod/Mythled_Prod.uproject" 1
+"C:/Users/etudiant/Documents/GitHub/Mythled_Prod/Mythled_Prod.uproject" 1
 "../../../Engine/Binaries/Win64/UE4Editor.modules" 2
 "../../../Engine/Binaries/Win64/Android/UE4Editor.modules" 3
 "../../../Engine/Binaries/Win64/HTML5/UE4Editor.modules" 4
 "../../../Engine/Binaries/Win64/IOS/UE4Editor.modules" 5
 "../../../Engine/Binaries/Win64/Linux/UE4Editor.modules" 6
 "../../../Engine/Binaries/Win64/Lumin/UE4Editor.modules" 7
-"../../../../../../Users/nat/Documents/GitHub/Mythled_Prod/Binaries/Win64/UE4Editor.modules" 8
+"../../../../../../Users/etudiant/Documents/GitHub/Mythled_Prod/Binaries/Win64/UE4Editor.modules" 8
 "../../../Engine/Plugins/2D/Paper2D/Paper2D.uplugin" 9
 "../../../Engine/Plugins/AI/AISupport/AISupport.uplugin" 10
 "../../../Engine/Plugins/AI/HTNPlanner/HTNPlanner.uplugin" 11
@@ -193,7 +193,7 @@
 "..\..\..\Engine\Content\Internationalization\icudt53l\cnvalias.icu" 193
 "..\..\..\Engine\Content\Internationalization\icudt53l\res_index.res" 194
 "..\..\..\Engine\Content\Internationalization\icudt53l\plurals.res" 195
-"..\..\..\Engine\Content\Internationalization\icudt53l\lang\en.res" 196
+"..\..\..\Engine\Content\Internationalization\icudt53l\lang\fr_CA.res" 196
 "..\..\..\Engine\Content\Internationalization\icudt53l\lang\pool.res" 197
 "..\..\..\Engine\Content\Internationalization\icudt53l\lang\root.res" 198
 "..\..\..\Engine\Content\Internationalization\icudt53l\region\en.res" 199
