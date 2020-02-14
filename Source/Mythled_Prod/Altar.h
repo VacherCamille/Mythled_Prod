@@ -3,7 +3,8 @@
 #pragma once
 
 
-#include "Components/CapsuleComponent.h" 
+#include "Components/CapsuleComponent.h"
+#include "Door.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/PointLightComponent.h"
@@ -38,6 +39,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		UCapsuleComponent* HitBox;
+
+	UPROPERTY(EditAnywhere)
+		ADoor* Door;
 
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
