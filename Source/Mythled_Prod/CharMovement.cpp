@@ -5,7 +5,6 @@
 #include "Runtime/Engine/Public/TimerManager.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine.h"
-#include "Blueprint/UserWidget.h"
 
 // Sets default values
 ACharMovement::ACharMovement()
