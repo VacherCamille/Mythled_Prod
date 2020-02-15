@@ -4,9 +4,11 @@
 
 #include "Components/TimelineComponent.h"
 #include "Components/BoxComponent.h" 
+#include "Engine/StaticMeshActor.h"
 #include "Door.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/PointLightComponent.h"
 #include "PressurePlate.generated.h"
 
 UCLASS()

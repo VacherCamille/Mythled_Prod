@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PressurePlate.h"
+#include "Engine.h"
 #include "Components/StaticMeshComponent.h"
 
 // Sets default values
@@ -18,7 +19,7 @@ APressurePlate::APressurePlate()
 
 	HitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("HitBox"));
 	HitBox->AttachTo(Root);
-	HitBox->InitBoxExtent(FVector(42.5, 42.5, 5.0));
+	HitBox->InitBoxExtent(FVector(47.5, 47.5, 10.0));
 
 	HitBox->OnComponentBeginOverlap.AddDynamic(this, &APressurePlate::OnOverlapBegin);
 	HitBox->OnComponentEndOverlap.AddDynamic(this, &APressurePlate::OnOverlapEnd);
@@ -67,21 +68,23 @@ void APressurePlate::OnTimelineFinished()
 void APressurePlate::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp) {
-		if (Door) {
-			Door->OpenDoor();
+		//if (Cast<AStaticMeshActor>(OtherComp)) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString("On"));
 			Timeline->Play();
-		}
+			FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.527115, 0.386429, 0.208637, 1.0));
+			if (Door) Door->OpenDoor();
+		//}
 	}
 }
 
 void APressurePlate::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp) {
-		if (Door) {
-			if (Cast<ACharacter>(OtherActor)) {
-				Door->CloseDoor();
-				Timeline->Reverse();
-			}
-		}
+		//if (Cast<AStaticMeshActor>(OtherComp)) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, FString("Off"));
+			Timeline->Reverse();
+			FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.0, 0.0, 0.0, 1.0));
+			if (Door) Door->CloseDoor();
+		//}
 	}
 }
