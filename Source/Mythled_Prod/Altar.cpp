@@ -43,7 +43,7 @@ void AAltar::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * Other
 {
 	if (OtherActor && (OtherActor != this) && OtherComp) {
 		if (Cast<ACharacter>(OtherActor)) {
-				Cast<ACharMovement>(OtherActor)->InteractObject = this;
+			Cast<ACharMovement>(OtherActor)->InteractObject = this;
 		}
 	}
 }
@@ -60,6 +60,8 @@ void AAltar::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherAc
 void AAltar::ChangeIsActivated()
 {
 	isActivated = !isActivated;
-	if (isActivated) Door->OpenDoor();
-	else Door->CloseDoor();
+	if (Door) {
+		if (isActivated) Door->OpenDoor();
+		else Door->CloseDoor();
+	}
 }

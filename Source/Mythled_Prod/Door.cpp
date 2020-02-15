@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Door.h"
-#include "Runtime/Engine/Public/EngineGlobals.h"
 
 // Sets default values
 ADoor::ADoor()
@@ -60,13 +59,11 @@ void ADoor::OnTimelineFinished()
 
 void ADoor::OpenDoor()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Play"));
 	Timeline->Play();
 }
 
 void ADoor::CloseDoor()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Stop"));
 	Timeline->Reverse();
 }
 

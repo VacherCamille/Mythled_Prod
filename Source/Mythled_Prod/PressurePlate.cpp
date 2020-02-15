@@ -2,7 +2,6 @@
 
 #include "PressurePlate.h"
 #include "Components/StaticMeshComponent.h"
-#include "Runtime/Engine/Public/EngineGlobals.h"
 
 // Sets default values
 APressurePlate::APressurePlate()
@@ -17,19 +16,36 @@ APressurePlate::APressurePlate()
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->AttachTo(Root);
 
-	HitBox = CreateDefaultSubobject<USphereComponent>(TEXT("HitBox"));
+	HitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("HitBox"));
 	HitBox->AttachTo(Root);
-	HitBox->InitSphereRadius(200.0f);
+	HitBox->InitBoxExtent(FVector(42.5, 42.5, 5.0));
 
-	HitBox->OnComponentBeginOverlap.AddDynamic(this, &ASwitch::OnOverlapBegin);
-	HitBox->OnComponentEndOverlap.AddDynamic(this, &ASwitch::OnOverlapEnd);
+	HitBox->OnComponentBeginOverlap.AddDynamic(this, &APressurePlate::OnOverlapBegin);
+	HitBox->OnComponentEndOverlap.AddDynamic(this, &APressurePlate::OnOverlapEnd);
+
+	Timeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("Timeline"));
+
+	InterpFunction.BindUFunction(this, FName("TimelineFloatReturn"));
+	TimelineFinished.BindUFunction(this, FName("OnTimelineFinished"));
+
+	ZOffset = -8.0;
 }
 
 // Called when the game starts or when spawned
 void APressurePlate::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (fCurve) {
+		Timeline->AddInterpFloat(fCurve, InterpFunction, FName("Alpha"));
+		Timeline->SetTimelineFinishedFunc(TimelineFinished);
+
+		StartLocation = GetActorLocation();
+		EndLocation = FVector(StartLocation.X, StartLocation.Y, StartLocation.Z + ZOffset);
+
+		Timeline->SetLooping(false);
+		Timeline->SetIgnoreTimeDilation(true);
+	}
 }
 
 // Called every frame
@@ -39,21 +55,33 @@ void APressurePlate::Tick(float DeltaTime)
 
 }
 
+void APressurePlate::TimelineFloatReturn(float fval)
+{
+	SetActorLocation(FMath::Lerp(StartLocation, EndLocation, fval));
+}
+
+void APressurePlate::OnTimelineFinished()
+{
+}
+
 void APressurePlate::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp) {
-		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Begin Overlap"));
+		if (Door) {
 			Door->OpenDoor();
+			Timeline->Play();
 		}
 	}
+}
 
 void APressurePlate::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp) {
-		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Begin End"));
-			Door->CloseDoor();
+		if (Door) {
+			if (Cast<ACharacter>(OtherActor)) {
+				Door->CloseDoor();
+				Timeline->Reverse();
+			}
 		}
 	}
 }

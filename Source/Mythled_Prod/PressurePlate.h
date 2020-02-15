@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-#include "Components/SphereComponent.h" 
-#include "Door.h"
 
+#include "Components/TimelineComponent.h"
+#include "Components/BoxComponent.h" 
+#include "Door.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "PressurePlate.generated.h"
@@ -12,6 +13,8 @@ UCLASS()
 class MYTHLED_PROD_API APressurePlate : public AActor
 {
 	GENERATED_BODY()
+
+		class UTimelineComponent* Timeline;
 	
 public:	
 	// Sets default values for this actor's properties
@@ -33,10 +36,32 @@ public:
 		UStaticMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere)
-		USphereComponent* HitBox;
+		UBoxComponent* HitBox;
 
 	UPROPERTY(EditAnywhere)
 		ADoor* Door;
+
+	UPROPERTY(EditAnywhere)
+		class UCurveFloat* fCurve;
+
+	UPROPERTY()
+		FVector StartLocation;
+
+	UPROPERTY()
+		FVector EndLocation;
+
+	UPROPERTY()
+		float ZOffset;
+
+	FOnTimelineFloat InterpFunction{};
+
+	FOnTimelineEvent TimelineFinished{};
+
+	UFUNCTION()
+		void TimelineFloatReturn(float fval);
+
+	UFUNCTION()
+		void OnTimelineFinished();
 
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
