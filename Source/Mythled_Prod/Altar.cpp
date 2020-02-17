@@ -35,7 +35,7 @@ void AAltar::BeginPlay()
 void AAltar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (isActivated) FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.0, 1.0, 0.0, 1.0));
+	if (isActivated) FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.527115, 0.386429, 0.208637, 1.0));
 	else FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.0, 0.0, 0.0, 1.0));
 }
 
