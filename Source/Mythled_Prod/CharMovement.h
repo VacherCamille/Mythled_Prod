@@ -138,6 +138,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Animation)
 		void RestartMap();
 
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void BindJump();
+
 
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);

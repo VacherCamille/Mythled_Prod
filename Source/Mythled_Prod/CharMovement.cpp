@@ -320,6 +320,13 @@ void ACharMovement::ResetRotation()
 
 void ACharMovement::RestartMap()
 {
-	UGameplayStatics::OpenLevel(this, "Sandbox_MAP");
+	//UGameplayStatics::OpenLevel(this, "Sandbox_MAP");
+}
+
+void ACharMovement::BindJump()
+{
+	UInputComponent* PlayerInputComponent = NULL;
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAction("Jump/Interact", IE_Pressed, this, &ACharacter::Jump);
 }
 
