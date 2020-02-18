@@ -14,6 +14,7 @@
 #include "Components/SphereComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Altar.h"
+#include "Tiroir.h"
 
 #include "CharMovement.generated.h"
 UCLASS()

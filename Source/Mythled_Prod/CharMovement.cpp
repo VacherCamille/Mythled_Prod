@@ -101,7 +101,7 @@ void ACharMovement::Tick(float DeltaTime)
 
 	if (isHit) {
 		if (OutHit.bBlockingHit) {
-			if (OutHit.GetActor()->ActorHasTag("outline")) {
+			if (OutHit.GetActor()->ActorHasTag("outline") || OutHit.GetActor()->ActorHasTag("outline_tiroir")) {
 				//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("You are hitting: %s"), *OutHit.GetActor()->GetName()));
 				//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Impact Point: %s"), *OutHit.ImpactPoint.ToString()));
 				//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Normal Point: %s"), *OutHit.ImpactNormal.ToString()));
@@ -111,8 +111,7 @@ void ACharMovement::Tick(float DeltaTime)
 				HighlightPrimitive = OutHit.GetActor()->FindComponentByClass<UPrimitiveComponent>();
 				HighlightPrimitive->SetRenderCustomDepth(true);
 				FollowObject = OutHit.GetActor();
-			}
-			else {
+			} else {
 				if (HighlightPrimitive != NULL) {
 					HighlightPrimitive->SetRenderCustomDepth(false);
 				}
@@ -233,21 +232,25 @@ void ACharMovement::StopDashing()
 void ACharMovement::Attraction()
 {
 	if (FollowObject != NULL && CurrentObject == NULL && GravityPrimitive == NULL) {
-		//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("ATTRACTION")));
-		CurrentObject = FollowObject;
-		GravityPrimitive = CurrentObject->FindComponentByClass<UPrimitiveComponent>();
-		//CurrentObject->FindComponentByClass<UPhysicsConstraintComponent>();
-		CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::TeleportPhysics);
+		if (FollowObject->ActorHasTag("outline")) {
+			//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("ATTRACTION")));
+			CurrentObject = FollowObject;
+			GravityPrimitive = CurrentObject->FindComponentByClass<UPrimitiveComponent>();
+			//CurrentObject->FindComponentByClass<UPhysicsConstraintComponent>();
+			CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::TeleportPhysics);
 
-		PhysicsHandle->GrabComponentAtLocationWithRotation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
+			PhysicsHandle->GrabComponentAtLocationWithRotation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
 
-		ResetRotation();
-		//PhysicsHandle->GrabComponentAtLocation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation());
+			ResetRotation();
+			//PhysicsHandle->GrabComponentAtLocation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation());
 
-		//GravityPrimitive->SetEnableGravity(false);
-		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
-		//SET LOCATION AND ROTATION OF FOLLOW OBJECT PARENT TO CHARACTER ACTOR	
-		isHolding = true;
+			//GravityPrimitive->SetEnableGravity(false);
+			//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
+			//SET LOCATION AND ROTATION OF FOLLOW OBJECT PARENT TO CHARACTER ACTOR	
+			isHolding = true;
+		} else if (FollowObject->ActorHasTag("outline_tiroir")) {
+			Cast<ATiroir>(FollowObject)->Activate();
+		}
 	}
 }
 
@@ -258,7 +261,7 @@ void ACharMovement::Repulsion()
 		//DELETE LINK BETWEEN CURRENT OBJECT AND CHARACTER ACTOR
 		//GravityPrimitive->SetEnableGravity(true);
 		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
-		
+
 		PhysicsHandle->ReleaseComponent();
 
 		GravityPrimitive->AddImpulse(FollowCamera->GetForwardVector() * ForcePower);
@@ -275,7 +278,11 @@ void ACharMovement::Repulsion()
 	}
 	else if (FollowObject != NULL) {
 		if (GetDistanceTo(FollowObject) < 1000.0f) {
-			FollowObject->FindComponentByClass<UPrimitiveComponent>()->AddImpulse(FollowCamera->GetForwardVector()*ForcePower);
+			if (FollowObject->ActorHasTag("outline")) {
+				FollowObject->FindComponentByClass<UPrimitiveComponent>()->AddImpulse(FollowCamera->GetForwardVector()*ForcePower);
+			} else if (FollowObject->ActorHasTag("outline_tiroir")) {
+				Cast<ATiroir>(FollowObject)->Desactivate();
+			}
 		}
 	}
 }
