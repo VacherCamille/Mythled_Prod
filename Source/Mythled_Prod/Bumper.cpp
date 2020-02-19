@@ -27,6 +27,7 @@ void ABumper::BeginPlay()
 {
 	Super::BeginPlay();
 	CurrentActor = NULL;
+	isSet = false;
 }
 
 // Called every frame
@@ -44,7 +45,10 @@ void ABumper::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * Othe
 	if (OtherActor && (OtherActor != this) && OtherComp) {
 		if (Cast<ACharacter>(OtherActor)) {
 			CurrentActor = OtherActor;
-			Cast<ACharacter>(CurrentActor)->InputComponent->BindAction("Jump/Interact", IE_Pressed, this, &ABumper::ImpulsePlayer);
+			if (isSet == false) {
+				Cast<ACharacter>(CurrentActor)->InputComponent->BindAction("Jump/Interact", IE_Pressed, this, &ABumper::ImpulsePlayer);
+				isSet = true;
+			}		
 		}
 	}
 }
@@ -54,7 +58,9 @@ void ABumper::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherA
 	if (OtherActor && (OtherActor != this) && OtherComp) {
 		if (Cast<ACharacter>(OtherActor)) {
 			//Cast<ACharMovement>(CurrentActor)->BindJump();
-			Cast<ACharMovement>(CurrentActor)->GetCharacterMovement()->JumpZVelocity = 500.0f;
+			if (Cast<ACharMovement>(CurrentActor)->GetCharacterMovement()->JumpZVelocity != 500.0f) {
+				Cast<ACharMovement>(CurrentActor)->GetCharacterMovement()->JumpZVelocity = 500.0f;		
+			}
 			CurrentActor = NULL;
 		}
 	}
@@ -64,7 +70,10 @@ void ABumper::ImpulsePlayer()
 {
 	//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("PROUT")));
 	if (CurrentActor != NULL) {
-		Cast<ACharMovement>(CurrentActor)->GetCharacterMovement()->JumpZVelocity = 1000.0f;
+		if (Cast<ACharMovement>(CurrentActor)->GetCharacterMovement()->JumpZVelocity != 1000.0f) {
+			Cast<ACharMovement>(CurrentActor)->GetCharacterMovement()->JumpZVelocity = 1000.0f;
+		}
+		
 	}
 	
 }

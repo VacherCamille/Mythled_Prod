@@ -27,6 +27,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		AActor* CurrentActor;
 
+	UPROPERTY(EditAnywhere)
+		bool isSet;
+
 	UPROPERTY(EditAnywhere, Category = "Gravity")
 		UPrimitiveComponent* GravityPrimitive;
 
