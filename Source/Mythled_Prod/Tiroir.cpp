@@ -14,7 +14,9 @@ ATiroir::ATiroir()
 	InterpFunction.BindUFunction(this, FName("TimelineFloatReturn"));
 	TimelineFinished.BindUFunction(this, FName("OnTimelineFinished"));
 
-	XOffset = 100.f;
+	XOffset = 0.f;
+	YOffset = 0.f;
+	ZOffset = 0.f;
 
 }
 
@@ -28,7 +30,7 @@ void ATiroir::BeginPlay()
 		Timeline->SetTimelineFinishedFunc(TimelineFinished);
 
 		StartLocation = GetActorLocation();
-		EndLocation = FVector(StartLocation.X + XOffset, StartLocation.Y, StartLocation.Z);
+		EndLocation = FVector(StartLocation.X + XOffset, StartLocation.Y + YOffset, StartLocation.Z + ZOffset);
 
 		Timeline->SetLooping(false);
 		Timeline->SetIgnoreTimeDilation(true);
@@ -56,7 +58,6 @@ void ATiroir::OnTimelineFinished()
 void ATiroir::Activate() {
 	if (!isActivated) {
 		Timeline->Play();
-		GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Green, FString::Printf(TEXT("Activated")));
 		isActivated = true;
 	}
 }
@@ -64,7 +65,6 @@ void ATiroir::Activate() {
 void ATiroir::Desactivate() {
 	if (isActivated) {
 		Timeline->Reverse();
-		GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Desactivated")));
 		isActivated = false;
 	}
 }

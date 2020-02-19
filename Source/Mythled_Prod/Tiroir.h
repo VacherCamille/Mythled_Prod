@@ -45,6 +45,12 @@ public:
 	UPROPERTY(EditAnywhere)
 		float XOffset;
 
+	UPROPERTY(EditAnywhere)
+		float YOffset;
+
+	UPROPERTY(EditAnywhere)
+		float ZOffset;
+
 	FOnTimelineFloat InterpFunction{};
 
 	FOnTimelineEvent TimelineFinished{};
