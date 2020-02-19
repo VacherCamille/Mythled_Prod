@@ -22,12 +22,26 @@ AInterruptor::AInterruptor()
 	HitBox->OnComponentBeginOverlap.AddDynamic(this, &AInterruptor::OnOverlapBegin);
 	HitBox->OnComponentEndOverlap.AddDynamic(this, &AInterruptor::OnOverlapEnd);
 
+	//sound
+	static ConstructorHelpers::FObjectFinder<USoundCue> ActivationSoundCueObject(TEXT("SoundCue'/Game/Objects/Sound_effects/Fire/FireLoopCue.FireLoopCue'"));
+	if (ActivationSoundCueObject.Succeeded()) {
+		ActivationSoundCue = ActivationSoundCueObject.Object;
+
+		ActivationAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ActivationAudioComponent"));
+		ActivationAudioComponent->SetupAttachment(RootComponent);
+	}
+
 }
 
 // Called when the game starts or when spawned
 void AInterruptor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//sound
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->SetSound(ActivationSoundCue);
+	}
 	
 }
 
@@ -52,9 +66,9 @@ void AInterruptor::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor *
 			Door->OpenDoor();
 
 			//sound
-			/*if (ActivationAudioComponent && ActivationSoundCue) {
+			if (ActivationAudioComponent && ActivationSoundCue) {
 				ActivationAudioComponent->Play(0.f);
-			}*/
+			}
 		}
 	}
 }

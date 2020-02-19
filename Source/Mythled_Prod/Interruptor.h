@@ -46,6 +46,12 @@ public:
 	UPROPERTY(EditAnywhere)
 		ADoor* Door;
 
+	//Sound
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Audio, meta = (AllowPrivateAcess = "true"))
+		class USoundCue* ActivationSoundCue;
+
+	UAudioComponent* ActivationAudioComponent;
+
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
