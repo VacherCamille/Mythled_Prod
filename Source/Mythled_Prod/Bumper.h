@@ -27,8 +27,17 @@ public:
 	UPROPERTY(EditAnywhere)
 		AActor* CurrentActor;
 
+	UPROPERTY(EditAnywhere)
+		bool isSet;
+
 	UPROPERTY(EditAnywhere, Category = "Gravity")
 		UPrimitiveComponent* GravityPrimitive;
+
+	//Sound
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Audio, meta = (AllowPrivateAcess = "true"))
+		class USoundCue* ActivationSoundCue;
+
+	UAudioComponent* ActivationAudioComponent;
 
 protected:
 	// Called when the game starts or when spawned

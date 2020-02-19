@@ -22,12 +22,26 @@ AAltar::AAltar()
 
 	HitBox->OnComponentBeginOverlap.AddDynamic(this, &AAltar::OnOverlapBegin);
 	HitBox->OnComponentEndOverlap.AddDynamic(this, &AAltar::OnOverlapEnd);
+
+	//sound
+	static ConstructorHelpers::FObjectFinder<USoundCue> ActivationSoundCueObject(TEXT("SoundCue'/Game/Objects/Sound_effects/Altar/AltarCue.AltarCue'"));
+	if (ActivationSoundCueObject.Succeeded()) {
+		ActivationSoundCue = ActivationSoundCueObject.Object;
+
+		ActivationAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ActivationAudioComponent"));
+		ActivationAudioComponent->SetupAttachment(RootComponent);
+	}
 }
 
 // Called when the game starts or when spawned
 void AAltar::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//sound
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->SetSound(ActivationSoundCue);
+	}
 	
 }
 
@@ -57,11 +71,19 @@ void AAltar::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherAc
 	}
 }
 
-void AAltar::ChangeIsActivated()
+void AAltar::ChangeIsActivated() 
 {
+	
 	isActivated = !isActivated;
 	if (Door) {
-		if (isActivated) Door->OpenDoor();
+		if (isActivated) {
+			Door->OpenDoor();
+
+			//sound
+			if (ActivationAudioComponent && ActivationSoundCue) {
+				ActivationAudioComponent->Play(0.f);
+			}
+		}
 		else Door->CloseDoor();
 	}
 }
