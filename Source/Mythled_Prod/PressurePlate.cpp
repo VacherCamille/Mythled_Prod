@@ -30,6 +30,15 @@ APressurePlate::APressurePlate()
 	TimelineFinished.BindUFunction(this, FName("OnTimelineFinished"));
 
 	ZOffset = -8.0;
+
+	//sound
+	static ConstructorHelpers::FObjectFinder<USoundCue> ActivationSoundCueObject(TEXT("SoundCue'/Game/Objects/Sound_effects/pressure_plate/PressurePlateCue.PressurePlateCue'"));
+	if (ActivationSoundCueObject.Succeeded()) {
+		ActivationSoundCue = ActivationSoundCueObject.Object;
+
+		ActivationAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ActivationAudioComponent"));
+		ActivationAudioComponent->SetupAttachment(RootComponent);
+	}
 }
 
 // Called when the game starts or when spawned
@@ -47,6 +56,11 @@ void APressurePlate::BeginPlay()
 		Timeline->SetLooping(false);
 		Timeline->SetIgnoreTimeDilation(true);
 	}
+
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->SetSound(ActivationSoundCue);
+	}
+
 }
 
 // Called every frame
@@ -74,6 +88,10 @@ void APressurePlate::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor
 			FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.527115, 0.386429, 0.208637, 1.0));
 			if (Door) Door->OpenDoor();
 		//}
+
+			if (ActivationAudioComponent && ActivationSoundCue) {
+				ActivationAudioComponent->Play(0.f);
+			}
 	}
 }
 

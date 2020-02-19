@@ -55,6 +55,12 @@ public:
 	UPROPERTY()
 		float ZOffset;
 
+	//Sound
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Audio, meta = (AllowPrivateAcess = "true"))
+		class USoundCue* ActivationSoundCue;
+
+	UAudioComponent* ActivationAudioComponent;
+
 	FOnTimelineFloat InterpFunction{};
 
 	FOnTimelineEvent TimelineFinished{};
