@@ -122,7 +122,7 @@ void ACharMovement::Tick(float DeltaTime)
 		PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
 		PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
 	}
-	if (!(CurrentObject && CurrentObject->IsValidLowLevel() && !CurrentObject->IsPendingKill())) Interact();
+	if (!(CurrentObject && CurrentObject->IsValidLowLevel() && !CurrentObject->IsPendingKill()) && isHolding) Interact();
 }
 
 // Called to bind functionality to input
@@ -273,7 +273,7 @@ void ACharMovement::Repulsion()
 		FRotator NewRotator = FollowCamera->GetComponentRotation();
 		NewRotator.Pitch = 0;
 		NewRotator.Roll = 0;
-		GetRootComponent()->SetWorldRotation(NewRotator);
+		GetRootComponent()->SetWorldRotation(NewRotator);		
 
 		isHolding = false;
 	}
