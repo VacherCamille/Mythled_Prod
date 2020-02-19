@@ -20,6 +20,15 @@ ABumper::ABumper()
 
 	HitBox->OnComponentBeginOverlap.AddDynamic(this, &ABumper::OnOverlapBegin);
 	HitBox->OnComponentEndOverlap.AddDynamic(this, &ABumper::OnOverlapEnd);
+
+	//sound
+	static ConstructorHelpers::FObjectFinder<USoundCue> ActivationSoundCueObject(TEXT("SoundCue'/Game/Objects/Sound_effects/Bumper/BumperCue.BumperCue'"));
+	if (ActivationSoundCueObject.Succeeded()) {
+		ActivationSoundCue = ActivationSoundCueObject.Object;
+
+		ActivationAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ActivationAudioComponent"));
+		ActivationAudioComponent->SetupAttachment(RootComponent);
+	}
 }
 
 // Called when the game starts or when spawned
@@ -28,6 +37,11 @@ void ABumper::BeginPlay()
 	Super::BeginPlay();
 	CurrentActor = NULL;
 	isSet = false;
+
+	//sound
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->SetSound(ActivationSoundCue);
+	}
 }
 
 // Called every frame
@@ -72,6 +86,11 @@ void ABumper::ImpulsePlayer()
 	if (CurrentActor != NULL) {
 		if (Cast<ACharMovement>(CurrentActor)->GetCharacterMovement()->JumpZVelocity != 1000.0f) {
 			Cast<ACharMovement>(CurrentActor)->GetCharacterMovement()->JumpZVelocity = 1000.0f;
+
+			//sound
+			if (ActivationAudioComponent && ActivationSoundCue) {
+				ActivationAudioComponent->Play(0.f);
+			}
 		}
 		
 	}

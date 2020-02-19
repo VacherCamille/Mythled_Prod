@@ -38,6 +38,7 @@ void AAltar::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//sound
 	if (ActivationAudioComponent && ActivationSoundCue) {
 		ActivationAudioComponent->SetSound(ActivationSoundCue);
 	}
@@ -77,6 +78,8 @@ void AAltar::ChangeIsActivated()
 	if (Door) {
 		if (isActivated) {
 			Door->OpenDoor();
+
+			//sound
 			if (ActivationAudioComponent && ActivationSoundCue) {
 				ActivationAudioComponent->Play(0.f);
 			}
