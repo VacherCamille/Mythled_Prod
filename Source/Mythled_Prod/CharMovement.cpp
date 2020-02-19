@@ -118,10 +118,11 @@ void ACharMovement::Tick(float DeltaTime)
 			}
 		}
 	}
-	if (CurrentObject != NULL) {
+	if (CurrentObject) {
 		PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
 		PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
 	}
+	if (!(CurrentObject && CurrentObject->IsValidLowLevel() && !CurrentObject->IsPendingKill())) Interact();
 }
 
 // Called to bind functionality to input
