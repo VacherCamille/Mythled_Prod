@@ -50,11 +50,6 @@ void ADoor::BeginPlay()
 		Timeline->SetLooping(false);
 		Timeline->SetIgnoreTimeDilation(true);
 	}
-
-	//sound
-	if (ActivationAudioComponent && ActivationSoundCue) {
-		ActivationAudioComponent->SetSound(ActivationSoundCue);
-	}
 }
 
 // Called every frame
