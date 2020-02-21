@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Interruptor.h"
+#include "Engine.h"
 #include "Components/StaticMeshComponent.h"
 
 // Sets default values

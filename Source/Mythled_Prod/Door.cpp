@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Door.h"
+#include "Engine.h"
 
 // Sets default values
 ADoor::ADoor()
@@ -19,7 +20,18 @@ ADoor::ADoor()
 	InterpFunction.BindUFunction(this, FName("TimelineFloatReturn"));
 	TimelineFinished.BindUFunction(this, FName("OnTimelineFinished"));
 
-	XOffset = 100.f;
+	//sound
+	if (!ActivationSoundCue) {
+		static ConstructorHelpers::FObjectFinder<USoundCue> ActivationSoundCueObject(TEXT("SoundCue'/Game/Objects/Sound_effects/Tiroir/TiroirCue.TiroirCue'"));
+		ActivationSoundCue = ActivationSoundCueObject.Object;
+		if (ActivationSoundCueObject.Succeeded()) {
+			ActivationAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ActivationAudioComponent"));
+			ActivationAudioComponent->SetupAttachment(RootComponent);
+		}
+	} else {
+		ActivationAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ActivationAudioComponent"));
+		ActivationAudioComponent->SetupAttachment(RootComponent);
+	}
 
 }
 
@@ -39,6 +51,10 @@ void ADoor::BeginPlay()
 		Timeline->SetIgnoreTimeDilation(true);
 	}
 
+	//sound
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->SetSound(ActivationSoundCue);
+	}
 }
 
 // Called every frame
@@ -60,10 +76,18 @@ void ADoor::OnTimelineFinished()
 void ADoor::OpenDoor()
 {
 	Timeline->Play();
+	//sound
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->Play(0.f);
+	}
 }
 
 void ADoor::CloseDoor()
 {
 	Timeline->Reverse();
+	//sound
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->Play(0.f);
+	}
 }
 

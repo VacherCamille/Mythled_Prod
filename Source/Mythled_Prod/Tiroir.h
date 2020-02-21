@@ -5,7 +5,6 @@
 #include "Components/TimelineComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Engine.h"
 #include "Tiroir.generated.h"
 
 UCLASS()
@@ -54,6 +53,12 @@ public:
 	FOnTimelineFloat InterpFunction{};
 
 	FOnTimelineEvent TimelineFinished{};
+
+	//Sound
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Audio, meta = (AllowPrivateAcess = "true"))
+		class USoundCue* ActivationSoundCue;
+
+	UAudioComponent* ActivationAudioComponent;
 
 	UFUNCTION()
 		void TimelineFloatReturn(float fval);
