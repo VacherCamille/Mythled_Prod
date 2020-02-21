@@ -83,7 +83,8 @@ void AAltar::ChangeIsActivated()
 			if (Door) {
 				Door->OpenDoor();
 			}
-			else {
+		} else {
+			if (Door) {
 				Door->CloseDoor();
 			}
 		}

@@ -83,7 +83,6 @@ void APressurePlate::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor
 {
 	if (OtherActor && (OtherActor != this) && OtherComp) {
 		//if (Cast<AStaticMeshActor>(OtherComp)) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString("On"));
 			Timeline->Play();
 			FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.527115, 0.386429, 0.208637, 1.0));
 			if (Door) Door->OpenDoor();
@@ -99,7 +98,6 @@ void APressurePlate::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor *
 {
 	if (OtherActor && (OtherActor != this) && OtherComp) {
 		//if (Cast<AStaticMeshActor>(OtherComp)) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, FString("Off"));
 			Timeline->Reverse();
 			FindComponentByClass<UPointLightComponent>()->SetLightColor(FLinearColor(0.0, 0.0, 0.0, 1.0));
 			if (Door) Door->CloseDoor();

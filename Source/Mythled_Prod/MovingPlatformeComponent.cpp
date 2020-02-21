@@ -29,7 +29,6 @@ void UMovingPlatformeComponent::BeginPlay()
 	MovingActor = GetOwner();
 
 	if (fCurve && MovingActor) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString("Animation"));
 		Timeline->AddInterpFloat(fCurve, InterpFunction, FName("Alpha"));
 		Timeline->SetTimelineFinishedFunc(TimelineFinished);
 

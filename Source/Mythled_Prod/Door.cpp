@@ -61,6 +61,7 @@ void ADoor::BeginPlay()
 void ADoor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
 }
 
 void ADoor::TimelineFloatReturn(float fval)
@@ -77,17 +78,17 @@ void ADoor::OpenDoor()
 {
 	Timeline->Play();
 	//sound
-	if (ActivationAudioComponent && ActivationSoundCue) {
+	/*if (ActivationAudioComponent && ActivationSoundCue) {
 		ActivationAudioComponent->Play(0.f);
-	}
+	}*/
 }
 
 void ADoor::CloseDoor()
 {
 	Timeline->Reverse();
 	//sound
-	if (ActivationAudioComponent && ActivationSoundCue) {
+	/*if (ActivationAudioComponent && ActivationSoundCue) {
 		ActivationAudioComponent->Play(0.f);
-	}
+	}*/
 }
 

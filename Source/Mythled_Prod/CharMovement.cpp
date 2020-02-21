@@ -278,12 +278,13 @@ void ACharMovement::Repulsion()
 		isHolding = false;
 	}
 	else if (FollowObject != NULL) {
-		if (GetDistanceTo(FollowObject) < 1000.0f) {
-			if (FollowObject->ActorHasTag("outline")) {
+		if (FollowObject->ActorHasTag("outline")) {
+			if (GetDistanceTo(FollowObject) < 1000.0f) {
 				FollowObject->FindComponentByClass<UPrimitiveComponent>()->AddImpulse(FollowCamera->GetForwardVector()*ForcePower);
-			} else if (FollowObject->ActorHasTag("outline_tiroir")) {
-				Cast<ATiroir>(FollowObject)->Desactivate();
 			}
+		}
+		else if (FollowObject->ActorHasTag("outline_tiroir")) {
+				Cast<ATiroir>(FollowObject)->Desactivate();
 		}
 	}
 }

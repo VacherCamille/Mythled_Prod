@@ -62,14 +62,13 @@ void AInterruptor::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor *
 		OtherActor->Destroy();
 		FindComponentByClass<UParticleSystemComponent>()->ActivateSystem();
 
-		if (Door) {
-			
-			Door->OpenDoor();
+		//sound
+		if (ActivationAudioComponent && ActivationSoundCue) {
+			ActivationAudioComponent->Play(0.f);
+		}
 
-			//sound
-			if (ActivationAudioComponent && ActivationSoundCue) {
-				ActivationAudioComponent->Play(0.f);
-			}
+		if (Door) {
+			Door->OpenDoor();
 		}
 	}
 }
