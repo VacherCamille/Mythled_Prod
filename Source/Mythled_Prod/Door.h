@@ -55,6 +55,12 @@ public:
 
 	FOnTimelineEvent TimelineFinished{};
 
+	//Sound
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Audio, meta = (AllowPrivateAcess = "true"))
+		class USoundCue* ActivationSoundCue;
+
+	UAudioComponent* ActivationAudioComponent;
+
 	UFUNCTION()
 		void TimelineFloatReturn(float fval);
 

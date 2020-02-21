@@ -3,6 +3,7 @@
 #include "Altar.h"
 #include "Components/StaticMeshComponent.h"
 #include "CharMovement.h"
+#include "Engine.h"
 
 // Sets default values
 AAltar::AAltar()
@@ -73,17 +74,17 @@ void AAltar::OnOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherAc
 
 void AAltar::ChangeIsActivated() 
 {
-	
 	isActivated = !isActivated;
-	if (Door) {
 		if (isActivated) {
-			Door->OpenDoor();
-
 			//sound
 			if (ActivationAudioComponent && ActivationSoundCue) {
 				ActivationAudioComponent->Play(0.f);
 			}
+			if (Door) {
+				Door->OpenDoor();
+			}
+			else {
+				Door->CloseDoor();
+			}
 		}
-		else Door->CloseDoor();
-	}
 }
