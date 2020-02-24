@@ -119,8 +119,9 @@ void ACharMovement::Tick(float DeltaTime)
 		}
 	}
 	if (CurrentObject) {
-		PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
-		PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
+		PhysicsHandle->SetTargetLocationAndRotation(ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
+		//PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
+		//PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
 	}
 	if (!(CurrentObject && CurrentObject->IsValidLowLevel() && !CurrentObject->IsPendingKill()) && isHolding) Interact();
 }
@@ -238,7 +239,7 @@ void ACharMovement::Attraction()
 			CurrentObject = FollowObject;
 			GravityPrimitive = CurrentObject->FindComponentByClass<UPrimitiveComponent>();
 			//CurrentObject->FindComponentByClass<UPhysicsConstraintComponent>();
-			CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::TeleportPhysics);
+			CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
 
 			PhysicsHandle->GrabComponentAtLocationWithRotation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
 
