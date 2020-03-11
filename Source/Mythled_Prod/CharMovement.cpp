@@ -119,9 +119,9 @@ void ACharMovement::Tick(float DeltaTime)
 		}
 	}
 	if (CurrentObject) {
-		PhysicsHandle->SetTargetLocationAndRotation(ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
-		//PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
-		//PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
+		//PhysicsHandle->SetTargetLocationAndRotation(ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
+		PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
+		PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
 	}
 	if (!(CurrentObject && CurrentObject->IsValidLowLevel() && !CurrentObject->IsPendingKill()) && isHolding) Interact();
 }
