@@ -22,7 +22,7 @@ ADoor::ADoor()
 
 	//sound
 	if (!ActivationSoundCue) {
-		static ConstructorHelpers::FObjectFinder<USoundCue> ActivationSoundCueObject(TEXT("SoundCue'/Game/Objects/Sound_effects/Tiroir/TiroirCue.TiroirCue'"));
+		static ConstructorHelpers::FObjectFinder<USoundCue> ActivationSoundCueObject(TEXT("SoundCue'/Game/Objects/Sound_effects/Pestle/pestleCue.pestleCue'"));
 		ActivationSoundCue = ActivationSoundCueObject.Object;
 		if (ActivationSoundCueObject.Succeeded()) {
 			ActivationAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ActivationAudioComponent"));
@@ -50,6 +50,11 @@ void ADoor::BeginPlay()
 		Timeline->SetLooping(false);
 		Timeline->SetIgnoreTimeDilation(true);
 	}
+
+	//sound
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->SetSound(ActivationSoundCue);
+	}
 }
 
 // Called every frame
@@ -66,24 +71,27 @@ void ADoor::TimelineFloatReturn(float fval)
 
 void ADoor::OnTimelineFinished()
 {
-
+	if (ActivationAudioComponent && ActivationSoundCue) {
+		ActivationAudioComponent->Stop();
+	}
 }
 
 void ADoor::OpenDoor()
 {
 	Timeline->Play();
+
 	//sound
-	/*if (ActivationAudioComponent && ActivationSoundCue) {
+	if (ActivationAudioComponent && ActivationSoundCue) {
 		ActivationAudioComponent->Play(0.f);
-	}*/
+	}
 }
 
 void ADoor::CloseDoor()
 {
 	Timeline->Reverse();
 	//sound
-	/*if (ActivationAudioComponent && ActivationSoundCue) {
+	if (ActivationAudioComponent && ActivationSoundCue) {
 		ActivationAudioComponent->Play(0.f);
-	}*/
+	}
 }
 
