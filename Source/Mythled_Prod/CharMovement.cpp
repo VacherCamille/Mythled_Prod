@@ -320,13 +320,15 @@ void ACharMovement::FixeRotationPlayer()
 	//GetRootComponent()->SetRelativeRotation(MeshPosition);
 }
 
+/*
 void ACharMovement::ResetRotation()
 {
 	if (CurrentObject != NULL && isHolding == true) {
 		CurrentObject->SetActorRelativeRotation(FRotator(0, 0, 0));
 	}
-	
+
 }
+*/
 
 void ACharMovement::RestartMap()
 {
@@ -339,4 +341,3 @@ void ACharMovement::BindJump()
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump/Interact", IE_Pressed, this, &ACharacter::Jump);
 }
-
