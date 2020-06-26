@@ -151,7 +151,7 @@ void ACharMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAction("Grab object", IE_Pressed, this, &ACharMovement::Interact);
 	PlayerInputComponent->BindAction("Exit/Menu", IE_Pressed, this, &ACharMovement::RestartMap);
 
-	//PlayerInputComponent->BindAction("ResetRotation", IE_Pressed, this, &ACharMovement::ResetRotation);
+	PlayerInputComponent->BindAction("ResetRotation", IE_Pressed, this, &ACharMovement::ResetRotation);
 }
 
 void ACharMovement::MoveForward(float Axis)
@@ -243,7 +243,7 @@ void ACharMovement::Attraction()
 
 			PhysicsHandle->GrabComponentAtLocationWithRotation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
 
-			ResetRotation();
+			//ResetRotation();
 			//PhysicsHandle->GrabComponentAtLocation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation());
 
 			//GravityPrimitive->SetEnableGravity(false);
@@ -320,7 +320,7 @@ void ACharMovement::FixeRotationPlayer()
 	//GetRootComponent()->SetRelativeRotation(MeshPosition);
 }
 
-/*
+
 void ACharMovement::ResetRotation()
 {
 	if (CurrentObject != NULL && isHolding == true) {
@@ -328,7 +328,7 @@ void ACharMovement::ResetRotation()
 	}
 
 }
-*/
+
 
 void ACharMovement::RestartMap()
 {
