@@ -14,10 +14,12 @@ ACharMovement::ACharMovement()
 
 	canDash = true;
 	dashDistance = 1500.0f;
-	dashCooldown = 0.5f;
+	dashCooldown = 0.1f;
 	dashStop = 1.0f;
-	ForcePower = 100000.0f;
+	ForcePower = 1000000.0f;
 	ForceDistance = 100000.0f;
+	MaxTeleportDistance = 2000.0f;
+	
 
 	maxWalkSpeed = 450.0f;
 	maxRunSpeed = 600.0f;
@@ -28,7 +30,7 @@ ACharMovement::ACharMovement()
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
-	GetCharacterMovement()->JumpZVelocity = 450.0f;
+	GetCharacterMovement()->JumpZVelocity = 600.0f;
 	GetCharacterMovement()->AirControl = 0.5f;
 
 	FollowObject = NULL;
@@ -58,6 +60,7 @@ void ACharMovement::BeginPlay()
 	Super::BeginPlay();
 	maxWalkSpeed = 350.0f;
 	maxRunSpeed = 600.0f;
+	dashCounter = 0;
 	bIsRunning = false;
 	GetCharacterMovement()->MaxWalkSpeed = maxWalkSpeed;
 	isHolding = false;
@@ -119,6 +122,7 @@ void ACharMovement::Tick(float DeltaTime)
 		}
 	}
 	if (CurrentObject) {
+		//ObjectDistance = Dist(CurrentObject->GetForwardVector(), FollowCamera->GetForwardVector()).size();
 		//PhysicsHandle->SetTargetLocationAndRotation(ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
 		PhysicsHandle->SetTargetLocation(ForceHandle->GetComponentLocation());
 		PhysicsHandle->SetTargetRotation(ForceHandle->GetComponentRotation());
@@ -179,6 +183,7 @@ void ACharMovement::MoveRight(float Axis)
 
 void ACharMovement::RunStart()
 {
+	//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("RUNNING")));
 	if (isHolding == false) {
 		bIsRunning = true;
 		GetCharacterMovement()->MaxWalkSpeed = maxRunSpeed;
@@ -187,6 +192,7 @@ void ACharMovement::RunStart()
 
 void ACharMovement::RunEnd()
 {
+	//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("STOP RUNNING")));
 	bIsRunning = false;
 	GetCharacterMovement()->MaxWalkSpeed = maxWalkSpeed;
 }
@@ -210,22 +216,33 @@ void ACharMovement::Dash()
 {
 	if (canDash && !GetCharacterMovement()->IsFalling() && isHolding == false)
 	{
-		GetCharacterMovement()->JumpZVelocity = 0.0f;
+		//GetCharacterMovement()->JumpZVelocity = 0.0f;
 		GetCharacterMovement()->BrakingFrictionFactor = 0.0f;
-		LaunchCharacter(FVector(this->GetActorForwardVector().X, this->GetActorForwardVector().Y, 0).GetSafeNormal()*dashDistance, true, true);
+		LaunchCharacter(FVector(FollowCamera->GetForwardVector().X, FollowCamera->GetForwardVector().Y, FollowCamera->GetForwardVector().Z).GetSafeNormal()*dashDistance, true, true);
 		canDash = false;
 		GetWorldTimerManager().SetTimer(unusedHandle, this, &ACharMovement::StopDashing, dashStop, false);
+	}
+	else if (dashCounter == 0 && isHolding == false && GetCharacterMovement()->IsFalling()) {
+		GetCharacterMovement()->BrakingFrictionFactor = 0.0f;
+		LaunchCharacter(FVector(FollowCamera->GetForwardVector().X, FollowCamera->GetForwardVector().Y, FollowCamera->GetForwardVector().Z).GetSafeNormal() * dashDistance, true, true);
+		canDash = false;
+		GetWorldTimerManager().SetTimer(unusedHandle, this, &ACharMovement::StopDashing, dashStop, false);
+		dashCounter = 1;
 	}
 }
 
 void ACharMovement::ResetDash()
 {
 	canDash = true;
+	if(!GetCharacterMovement()->IsFalling()){
+		dashCounter = 0;
+	}
+	
 }
 
 void ACharMovement::StopDashing()
 {
-	GetCharacterMovement()->JumpZVelocity = 500.0f;
+	GetCharacterMovement()->JumpZVelocity = 600.0f;
 	//GetCharacterMovement()->StopMovementImmediately();
 	GetCharacterMovement()->BrakingFrictionFactor = 2.0f;
 	GetWorldTimerManager().SetTimer(unusedHandle, this, &ACharMovement::ResetDash, dashCooldown, false);
@@ -239,16 +256,25 @@ void ACharMovement::Attraction()
 			CurrentObject = FollowObject;
 			GravityPrimitive = CurrentObject->FindComponentByClass<UPrimitiveComponent>();
 			//CurrentObject->FindComponentByClass<UPhysicsConstraintComponent>();
+
+
+			
+			ObjectVector.X = -1 * FollowCamera->GetForwardVector().X;
+			ObjectVector.Y = -1 * FollowCamera->GetForwardVector().Y;
+			ObjectVector.Z = -1 * FollowCamera->GetForwardVector().Z;
+			//GravityPrimitive->AddImpulse((ObjectVector * ForcePower));
+			//while (ObjectDistance < 100) {};
 			CurrentObject->SetActorLocationAndRotation(ForceLocation, ForceRotation, false, 0, ETeleportType::None);
-
 			PhysicsHandle->GrabComponentAtLocationWithRotation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation(), ForceHandle->GetComponentRotation());
-
+			
 			//ResetRotation();
 			//PhysicsHandle->GrabComponentAtLocation(GravityPrimitive, FName(), ForceHandle->GetComponentLocation());
 
 			//GravityPrimitive->SetEnableGravity(false);
 			//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 			//SET LOCATION AND ROTATION OF FOLLOW OBJECT PARENT TO CHARACTER ACTOR	
+
+			RunEnd();
 			isHolding = true;
 		} else if (FollowObject->ActorHasTag("outline_tiroir")) {
 			Cast<ATiroir>(FollowObject)->Activate();
@@ -274,14 +300,15 @@ void ACharMovement::Repulsion()
 		FRotator NewRotator = FollowCamera->GetComponentRotation();
 		NewRotator.Pitch = 0;
 		NewRotator.Roll = 0;
-		GetRootComponent()->SetWorldRotation(NewRotator);		
-
+		GetRootComponent()->SetWorldRotation(NewRotator);	
+		bIsRunning = false;
+		GetCharacterMovement()->MaxWalkSpeed = maxWalkSpeed;
 		isHolding = false;
 	}
 	else if (FollowObject != NULL) {
 		if (FollowObject->ActorHasTag("outline")) {
 			if (GetDistanceTo(FollowObject) < 1000.0f) {
-				FollowObject->FindComponentByClass<UPrimitiveComponent>()->AddImpulse(FollowCamera->GetForwardVector()*ForcePower);
+				//FollowObject->FindComponentByClass<UPrimitiveComponent>()->AddImpulse(FollowCamera->GetForwardVector()*ForcePower);
 			}
 		}
 		else if (FollowObject->ActorHasTag("outline_tiroir")) {
@@ -293,9 +320,11 @@ void ACharMovement::Repulsion()
 void ACharMovement::Interact()
 {
 	if (isHolding == true) {
+
 		PhysicsHandle->ReleaseComponent();
+		CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
 		//GravityPrimitive->SetEnableGravity(true);
-		//CurrentObject->GetRootComponent()->ComponentVelocity = NulVelocity;
+		GravityPrimitive->AddImpulse(FVector(0.0f,0.0f,-1.0f) * 1);
 		GravityPrimitive = NULL;
 		CurrentObject = NULL;
 

@@ -59,6 +59,9 @@ public:
 		float maxRunSpeed;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		float dashCounter;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float dashDistance;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
@@ -80,10 +83,19 @@ public:
 		float ForceDistance;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+		float MaxTeleportDistance;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		FTimerHandle unusedHandle;
 
 	UPROPERTY(EditAnywhere, Category = "Location")
 		FVector ForceLocation;
+
+	UPROPERTY(EditAnywhere, Category = "Location")
+		FVector ObjectVector;
+
+	UPROPERTY(EditAnywhere, Category = "Location")
+		float ObjectDistance;
 
 	UPROPERTY(EditAnywhere, Category = "Location")
 		FVector NulVelocity;
